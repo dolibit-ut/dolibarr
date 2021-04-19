@@ -134,6 +134,7 @@ class ConferenceOrBooth extends ActionComm
 	public $status;
 	// END MODULEBUILDER PROPERTIES
 
+	
 	/**
 	 * Constructor
 	 *
@@ -145,25 +146,34 @@ class ConferenceOrBooth extends ActionComm
 
 		$this->db = $db;
 
-		if (empty($conf->global->MAIN_SHOW_TECHNICAL_ID) && isset($this->fields['rowid'])) {
+		if (empty($conf->global->MAIN_SHOW_TECHNICAL_ID) && isset($this->fields['rowid'])) 
+		{
 			$this->fields['id']['visible'] = 0;
 		}
-		if (empty($conf->multicompany->enabled) && isset($this->fields['entity'])) {
+		
+		if (empty($conf->multicompany->enabled) && isset($this->fields['entity'])) 
+		{
 			$this->fields['entity']['enabled'] = 0;
 		}
 
 		// Unset fields that are disabled
-		foreach ($this->fields as $key => $val) {
-			if (isset($val['enabled']) && empty($val['enabled'])) {
+		foreach ($this->fields as $key => $val) 
+		{
+			if (isset($val['enabled']) && empty($val['enabled'])) 
+			{
 				unset($this->fields[$key]);
 			}
 		}
 
 		// Translate some data of arrayofkeyval
-		if (is_object($langs)) {
-			foreach ($this->fields as $key => $val) {
-				if (!empty($val['arrayofkeyval']) && is_array($val['arrayofkeyval'])) {
-					foreach ($val['arrayofkeyval'] as $key2 => $val2) {
+		if (is_object($langs)) 
+		{
+			foreach ($this->fields as $key => $val) 
+			{
+				if (!empty($val['arrayofkeyval']) && is_array($val['arrayofkeyval'])) 
+				{
+					foreach ($val['arrayofkeyval'] as $key2 => $val2) 
+					{
 						$this->fields[$key]['arrayofkeyval'][$key2] = $langs->trans($val2);
 					}
 				}
@@ -171,6 +181,7 @@ class ConferenceOrBooth extends ActionComm
 		}
 	}
 
+	
 	/**
 	 * Create object into database
 	 *
@@ -192,14 +203,18 @@ class ConferenceOrBooth extends ActionComm
 	 */
 	protected function setPercentageFromStatus()
 	{
-		if ($this->status==self::STATUS_DONE) {
+		if ($this->status==self::STATUS_DONE) 
+		{
 			$this->percentage=100;
 		}
-		if ($this->status==self::STATUS_DRAFT) {
+		
+		if ($this->status==self::STATUS_DRAFT) 
+		{
 			$this->percentage=0;
 		}
 	}
 
+	
 	/**
 	 * Set action comm fields
 	 *
@@ -226,14 +241,15 @@ class ConferenceOrBooth extends ActionComm
 		$this->datep2=$this->datef;
 	}
 
+	
 	/**
 	 * Load object in memory from the database
 	 *
-	 * @param int    $id   Id object
-	 * @param string $ref  Ref
-	 * @param  string	$ref_ext		Ref ext to get
+	 * @param 	int    	$id   			Id object
+	 * @param 	string 	$ref  			Ref
+	 * @param 	string	$ref_ext		Ref ext to get
 	 * @param	string	$email_msgid	Email msgid
-	 * @return int         <0 if KO, 0 if not found, >0 if OK
+	 * @return 	int     				<0 if KO, 0 if not found, >0 if OK
 	 */
 	public function fetch($id, $ref = null, $ref_ext = '', $email_msgid = '')
 	{
@@ -242,6 +258,7 @@ class ConferenceOrBooth extends ActionComm
 		return $result;
 	}
 
+	
 	/**
 	 * Load list of objects in memory from the database.
 	 *
@@ -267,44 +284,66 @@ class ConferenceOrBooth extends ActionComm
 		$sql .= $this->getFieldList('t');
 		$sql .= ' FROM '.MAIN_DB_PREFIX.$this->table_element.' as t';
 		$sql .= " INNER JOIN ".MAIN_DB_PREFIX."c_actioncomm as cact ON cact.id=t.fk_action AND cact.module LIKE '%@eventorganization'";
-		if (isset($this->ismultientitymanaged) && $this->ismultientitymanaged == 1) {
+		if (isset($this->ismultientitymanaged) && $this->ismultientitymanaged == 1) 
+		{
 			$sql .= ' WHERE t.entity IN ('.getEntity($this->table_element).')';
-		} else {
+		} 
+		else 
+		{
 			$sql .= ' WHERE 1 = 1';
 		}
+		
 		// Manage filter
 		$sqlwhere = array();
-		if (count($filter) > 0) {
-			foreach ($filter as $key => $value) {
-				if ($key == 't.id' || $key == 't.fk_project' || $key == 't.fk_soc' || $key == 't.fk_action') {
+		if (count($filter) > 0) 
+		{
+			foreach ($filter as $key => $value) 
+			{
+				if ($key == 't.id' || $key == 't.fk_project' || $key == 't.fk_soc' || $key == 't.fk_action') 
+				{
 					$sqlwhere[] = $key.'='.$value;
-				} elseif (in_array($this->fields[$key]['type'], array('date', 'datetime', 'timestamp'))) {
+				} 
+				elseif (in_array($this->fields[$key]['type'], array('date', 'datetime', 'timestamp'))) 
+				{
 					$sqlwhere[] = $key.' = \''.$this->db->idate($value).'\'';
-				} elseif ($key == 'customsql') {
+				} 
+				elseif ($key == 'customsql') 
+				{
 					$sqlwhere[] = $value;
-				} elseif (strpos($value, '%') === false) {
+				} 
+				elseif (strpos($value, '%') === false) 
+				{
 					$sqlwhere[] = $key.' IN ('.$this->db->sanitize($this->db->escape($value)).')';
-				} else {
+				} 
+				else 
+				{
 					$sqlwhere[] = $key.' LIKE \'%'.$this->db->escape($value).'%\'';
 				}
 			}
 		}
-		if (count($sqlwhere) > 0) {
+		
+		if (count($sqlwhere) > 0) 
+		{
 			$sql .= ' AND ('.implode(' '.$filtermode.' ', $sqlwhere).')';
 		}
 
-		if (!empty($sortfield)) {
+		if (!empty($sortfield)) 
+		{
 			$sql .= $this->db->order($sortfield, $sortorder);
 		}
-		if (!empty($limit)) {
+		
+		if (!empty($limit)) 
+		{
 			$sql .= ' '.$this->db->plimit($limit, $offset);
 		}
 
 		$resql = $this->db->query($sql);
-		if ($resql) {
+		if ($resql) 
+		{
 			$num = $this->db->num_rows($resql);
 			$i = 0;
-			while ($i < ($limit ? min($limit, $num) : $num)) {
+			while ($i < ($limit ? min($limit, $num) : $num)) 
+			{
 				$obj = $this->db->fetch_object($resql);
 
 				$record = new self($this->db);
@@ -314,10 +353,13 @@ class ConferenceOrBooth extends ActionComm
 
 				$i++;
 			}
+			
 			$this->db->free($resql);
 
 			return $records;
-		} else {
+		} 
+		else 
+		{
 			$this->errors[] = 'Error '.$this->db->lasterror();
 			dol_syslog(__METHOD__.' '.join(',', $this->errors), LOG_ERR);
 
@@ -325,6 +367,7 @@ class ConferenceOrBooth extends ActionComm
 		}
 	}
 
+	
 	/**
 	 * Update object into database
 	 *
