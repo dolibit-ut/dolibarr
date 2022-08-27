@@ -13,7 +13,8 @@
  * Copyright (C) 2014       Ferran Marcet			<fmarcet@2byte.es>
  * Copyright (C) 2015       Jean-François Ferry		<jfefe@aternatik.fr>
  * Copyright (C) 2018-2021  Frédéric France         <frederic.france@netlogic.fr>
- * Copyright (C) 2022	    Gauthier VERDOL     <gauthier.verdol@atm-consulting.fr>
+ * Copyright (C) 2022	    Gauthier VERDOL         <gauthier.verdol@atm-consulting.fr>
+ *
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,9 +31,9 @@
  */
 
 /**
- * \file 	htdocs/commande/card.php
- * \ingroup commande
- * \brief 	Page to show customer order
+ *   \file 	       htdocs/commande/card.php
+ *   \ingroup      commande
+ *   \brief 	   Page to show customer order
  */
 
 require '../main.inc.php';
@@ -106,13 +107,13 @@ $extrafields = new ExtraFields($db);
 $extrafields->fetch_name_optionals_label($object->table_element);
 
 // Load object
-include DOL_DOCUMENT_ROOT.'/core/actions_fetchobject.inc.php'; // Must be include, not include_once
+include DOL_DOCUMENT_ROOT.'/core/actions_fetchobject.inc.php';    // Must be include, not include_once
 
-$usercanread = $user->hasRight("commande", "lire");
-$usercancreate = $user->hasRight("commande", "creer");
-$usercandelete = $user->hasRight("commande", "supprimer");
+$usercanread   = $user->hasRight('commande', 'lire');
+$usercancreate = $user->hasRight('commande', 'creer');
+$usercandelete = $user->hasRight('commande', 'supprimer');
+
 // Advanced permissions
-
 $usercanclose = ((empty($conf->global->MAIN_USE_ADVANCED_PERMS) && !empty($usercancreate)) || (!empty($conf->global->MAIN_USE_ADVANCED_PERMS) && $user->hasRight('commande', 'order_advance', 'close')));
 $usercanvalidate = ((empty($conf->global->MAIN_USE_ADVANCED_PERMS) && $usercancreate) || (!empty($conf->global->MAIN_USE_ADVANCED_PERMS) && $user->hasRight('commande', 'order_advance', 'validate')));
 $usercancancel = ((empty($conf->global->MAIN_USE_ADVANCED_PERMS) && $usercancreate) || (!empty($conf->global->MAIN_USE_ADVANCED_PERMS) && $user->hasRight('commande', 'order_advance', 'annuler')));
@@ -122,9 +123,9 @@ $usercangeneretedoc = (empty($conf->global->MAIN_USE_ADVANCED_PERMS) || $user->h
 $usermustrespectpricemin = ((!empty($conf->global->MAIN_USE_ADVANCED_PERMS) && empty($user->rights->produit->ignore_price_min_advance)) || empty($conf->global->MAIN_USE_ADVANCED_PERMS));
 $usercancreatepurchaseorder = ($user->hasRight('fournisseur', 'commande', 'creer') || $user->hasRight('supplier_order', 'creer'));
 
-$permissionnote = $usercancreate; // Used by the include of actions_setnotes.inc.php
-$permissiondellink = $usercancreate; // Used by the include of actions_dellink.inc.php
-$permissiontoadd = $usercancreate; // Used by the include of actions_addupdatedelete.inc.php and actions_lineupdown.inc.php
+$permissionnote = $usercancreate;       // Used by the include of actions_setnotes.inc.php
+$permissiondellink = $usercancreate;    // Used by the include of actions_dellink.inc.php
+$permissiontoadd = $usercancreate;      // Used by the include of actions_addupdatedelete.inc.php and actions_lineupdown.inc.php
 
 $error = 0;
 
@@ -166,11 +167,11 @@ if (empty($reshook)) {
 		$action = '';
 	}
 
-	include DOL_DOCUMENT_ROOT.'/core/actions_setnotes.inc.php'; // Must be include, not include_once
+	include DOL_DOCUMENT_ROOT.'/core/actions_setnotes.inc.php';     // Must be include, not include_once
 
-	include DOL_DOCUMENT_ROOT.'/core/actions_dellink.inc.php'; // Must be include, not include_once
+	include DOL_DOCUMENT_ROOT.'/core/actions_dellink.inc.php';      // Must be include, not include_once
 
-	include DOL_DOCUMENT_ROOT.'/core/actions_lineupdown.inc.php'; // Must be include, not include_once
+	include DOL_DOCUMENT_ROOT.'/core/actions_lineupdown.inc.php';   // Must be include, not include_once
 
 	// Action clone object
 	if ($action == 'confirm_clone' && $confirm == 'yes' && $usercancreate) {
@@ -280,7 +281,7 @@ if (empty($reshook)) {
 			$object->fk_account = GETPOST('fk_account', 'int');
 			$object->availability_id = GETPOST('availability_id');
 			$object->demand_reason_id = GETPOST('demand_reason_id');
-			$object->date_livraison = $date_delivery; // deprecated
+			$object->date_livraison = $date_delivery;               // deprecated
 			$object->delivery_date = $date_delivery;
 			$object->shipping_method_id = GETPOST('shipping_method_id', 'int');
 			$object->warehouse_id = GETPOST('warehouse_id', 'int');
@@ -290,6 +291,7 @@ if (empty($reshook)) {
 			$object->location_incoterms = GETPOST('location_incoterms', 'alpha');
 			$object->multicurrency_code = GETPOST('multicurrency_code', 'alpha');
 			$object->multicurrency_tx = GETPOST('originmulticurrency_tx', 'int');
+			
 			// Fill array 'array_options' with data from add form
 			if (!$error) {
 				$ret = $extrafields->setOptionalsFromPost(null, $object);
@@ -2708,6 +2710,7 @@ if ($action == 'create' && $usercancreate) {
 			include DOL_DOCUMENT_ROOT.'/core/tpl/bloc_showhide.tpl.php';
 		}
 
+		
 		/*
 		 * Lines
 		 */
@@ -2744,6 +2747,7 @@ if ($action == 'create' && $usercancreate) {
 		/*
 		 * Form to add new line
 		 */
+		
 		if ($object->statut == Commande::STATUS_DRAFT && $usercancreate && $action != 'selectlines') {
 			if ($action != 'editline') {
 				// Add free products/services
@@ -2766,6 +2770,7 @@ if ($action == 'create' && $usercancreate) {
 		/*
 		 * Buttons for actions
 		 */
+		
 		if ($action != 'presend' && $action != 'editline') {
 			print '<div class="tabsAction">';
 
