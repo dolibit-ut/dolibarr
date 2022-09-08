@@ -23,7 +23,9 @@ Following changes may create regressions for some external modules, but were nec
 * Trigger ORDER_SUPPLIER_DISPATCH is removed, use ORDER_SUPPLIER_RECEIVE and/or LINEORDER_SUPPLIER_DISPATCH instead.
 
 
+
 ***** ChangeLog for 16.0.0 compared to 15.0.0 *****
+
 
 For users:
 ---------------
@@ -35,14 +37,17 @@ NEW: Support for recurring purchase invoices.
 NEW: #20292 Include German public holidays
 NEW: Can show ZATCA QR-Code on PDFs
 NEW: Can show Swiss QR-Code on PDFs
-NEW: #17123 added ExtraFields for Stock Mouvement
+
 NEW: #20609 new massaction to assign a sale representatives on a selection of thirdparties
 NEW: #20653 edit discount pourcentage for all lines in one shot
 NEW: Accept 'auto' for ref of object on import of purchase order/proposal
+
+Accountancy:
 NEW: Accountancy - Add more filters and info on page to bind accounting accounts
 NEW: Accountancy - Add subledger account when generate a transaction with a deposit invoice
 NEW: Accountancy - Add a massaction to preselect an account (customer and supplier list)
 NEW: Accountancy - Add hidden feature for accounting reconciliation
+
 NEW: ACE Editor is restored at same cursor position after a save.
 NEW: Add "addMoreActionsButtons" hook to subscription form
 NEW: Add an option in GUI to show a Quick add button into top menu bar
@@ -72,7 +77,7 @@ NEW: A public form to send a message and create a lead is available
 NEW: automatically set totally received status in reception
 NEW: Auto set invoice paid when adding credit not and remain to pay is 0
 NEW: Availibility dictionnary has a new column unit and number
-NEW: Can change value of AWP during the inventory
+
 NEW: Can enter price with tax for predefined products on purchase objects
 NEW: Can filter on a thirdparty on product statistics
 NEW: Can removed doc templates from setup page of thirdparty
@@ -80,64 +85,106 @@ NEW: Can set the parent company during the creation of thirdparty (action=add of
 NEW: Can use ! to make a search that exclude a string
 NEW: Change in theme colors does not need to use the refresh button
 NEW: clean values and amount in FEC import
-NEW: const MAIL_MASS_ACTION_ADD_LAST_IF_MAIN_DOC_NOT_FOUND for mailing mass action
 NEW: Contact filter project list
 NEW: Create contract from invoice
 NEW: create third-party with contact if not found on public ticket
 NEW: Default value for MAIN_SECURITY_CSRF_WITH_TOKEN is now 2 (GET are also protected agains CSRF attacks)
-NEW: deposit payment terms: add field into dictionary admin page to define default percentage of deposit. 
+NEW: Dictionaries - Payment Terms: add field into dictionary admin page to define default percentage of deposit. 
 NEW: Dictionaries - add possibility to manage countries in EEC
 NEW: Display errors in a message box after generating documents
+
+NEW: Enhance the import. Can use 'auto' for the ref (import of orders)
+
+BOM:
+NEW: Module BOM - Add tabs for nets Bom
+NEW: Module BOM - Add the possibility to add sub-BOMs to BOM
 NEW: Display physical and virtual stock of the products when creating OF from a BOM
 NEW: Display product ref in "Object link" product tab for BOM
-NEW: Enhance the import. Can use 'auto' for the ref (import of orders)
+
+Database:
+NEW: Some core tables are created only at module activation
+NEW: Can store the session into database (instead of beeing managed by PHP)
+
+eMail:
+NEW: MAIN_MAIL_AUTOCOPY_TO can accept several email and special keys
+
+Events:
 NEW: Events on Proposal to Return to Draft
+
+Exports: 
+NEW: stock limit in stock export CSV
+
+Imports:
+
+
+Mass action:
+NEW: Mass action "Close shipments"
+NEW: const MAIL_MASS_ACTION_ADD_LAST_IF_MAIN_DOC_NOT_FOUND for mailing mass action
+
+Stock:
+NEW: #17123 added ExtraFields for Stock Mouvement
+NEW: Can change value of AWP during the inventory
+NEW: stock filter in reassort lists
+
 NEW: Page to list expense report payments
 NEW: JS inventory autocalc input
 NEW: language support for more emailing target selectors
 NEW: leave requests: add field into type dictionary to block request if balance is negative
 NEW: MAIN_MAIL_AUTOCOPY_TO can accept several email and special keys
 NEW: MAIN_SEARCH_CAT_OR_BY_DEFAULT const for search by category
-NEW: Mass action "Close shipments"
-NEW: Module BOM - Add tabs for nets Bom
-NEW: Module BOM - Add the possibility to add sub-BOMs to BOM
+NEW: const MAIL_MASS_ACTION_ADD_LAST_IF_MAIN_DOC_NOT_FOUND for mailing mass action
+
+Recruitment:
 NEW: Module Recruitment - Add a public page with all list of open job positions.
 NEW: Module Recruitment - Add a tab with list of application on the jobposition file.
+
+Website:
 NEW: Module Website - supports now the multicompany module
+
 NEW: More mode for THEME_TOPMENU_DISABLE_IMAGE (2, 3, ...)
 NEW: Add option to move checkbox column as first column on Thirdparty list (only few screens)
 NEW: on redirect of page in website module, GET parameters are kept.
-NEW: optional display warning icons on ticket list
+
 NEW: payment conditions enabling semi-automatic deposit creation (Issue #18439)
 NEW: possibility to consume multiple batch
 NEW: Reverse movement product consumption
 NEW: Send email to the supplier order contact
 NEW: add permission to report time on timesheet
 NEW: SEPA XML - option to place payment Type Info at Credit transfer Transaction level
-NEW: Some core tables are created only at module activation
+
+MRP / MO:
 NEW: MRP - split consumption line on MO
+
+Proposals:
 NEW: Proposals - option update prices on proposal cloning
-NEW: stock filter in reassort lists
-NEW: stock limit in stock export CSV
+
+Supplier order:
 NEW: Supplier order - Show ref supplier of reception in linked object block
 NEW: support user_modif in order
+
 NEW: Surveys - Show number of votes into the label of tab "Results" of a survey
+
 NEW: TakePOS - barcode rule to insert product in TakePOS
 NEW: TakePOS - pagination on search results
 NEW: TakePOS - show product reference
 NEW: TakePOS - add constant to hide categories
 NEW: TakePOS - add constant to show category description
 NEW: TakePOS - add constant to show only the products in stock
+
 NEW: Tickets - option to default check "notify tier at creation"
 NEW: Tickets - Trigger: allow to automatically send messages on new tickets
+NEW: Tickets - optional display warning icons on ticket list
+
+Tools:
 NEW: The backup tools has an "lowmemory" option for mysqldump on large database
 NEW: The 'reposition' class works on ajax constantonoff that make redirects
 NEW: Thirdparty - Add rules "customer accountancy code" is mandatory to validate invoice
 NEW: thumbnail field in product list
 NEW: total mark rate in list
 NEW: uncheck "send message" by default on a ticket when private messages has been checked
+
 NEW: VAT Report by month - Show detail by rate and also by code
-NEW: Can store the session into database (instead of beeing managed by PHP)
+
 NEW: Added MMK currency (Myanmar Kyat)
 NEW: On a form to send an email, we show all emails of contacts of object
 
@@ -230,6 +277,7 @@ Following changes may create regressions for some external modules, but were nec
 * Method fetch_all of DolResource has been renamed into fetchAll() to match naming conventions.
 * The hook 'upgrade' and 'doUpgrade2" has been renamed 'doUpgradeBefore' and 'doUpgradeAfterDB'. A new trigger 'doUpgradeAfterFiles' has been introduced.
 * The context hook 'suppliercard' when on the supplier tab of a thirdparty has been renamed into 'thirdpartysupplier'
+
 
 
 ***** ChangeLog for 15.0.3 compared to 15.0.2 *****
