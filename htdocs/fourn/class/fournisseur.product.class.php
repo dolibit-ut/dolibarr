@@ -578,7 +578,7 @@ class ProductFournisseur extends Product
 		$sql .= " pfp.supplier_reputation, pfp.fk_user, pfp.datec,";
 		$sql .= " pfp.multicurrency_price, pfp.multicurrency_unitprice, pfp.multicurrency_tx, pfp.fk_multicurrency, pfp.multicurrency_code,";
 		$sql .= " pfp.barcode, pfp.fk_barcode_type, pfp.packaging,";
-		$sql .= " p.ref as product_ref";
+		$sql .= " p.ref as product_ref, p.tosell as status, p.tobuy as status_buy";
 		$sql .= " FROM ".MAIN_DB_PREFIX."product_fournisseur_price as pfp, ".MAIN_DB_PREFIX."product as p";
 		$sql .= " WHERE pfp.rowid = ".(int) $rowid;
 		$sql .= " AND pfp.fk_product = p.rowid";
@@ -594,7 +594,8 @@ class ProductFournisseur extends Product
 				$this->fk_product				= $obj->fk_product;
 				$this->product_id				= $obj->fk_product;
 				$this->product_ref				= $obj->product_ref;
-
+				$this->status					= $obj->status;
+				$this->status_buy				= $obj->status_buy;
 				$this->fourn_id					= $obj->fk_soc;
 				$this->fourn_ref				= $obj->ref_fourn; // deprecated
 				$this->ref_supplier             = $obj->ref_fourn;
@@ -670,7 +671,7 @@ class ProductFournisseur extends Product
 		// phpcs:enable
 		global $conf;
 
-		$sql = "SELECT s.nom as supplier_name, s.rowid as fourn_id, p.ref as product_ref,";
+		$sql = "SELECT s.nom as supplier_name, s.rowid as fourn_id, p.ref as product_ref, p.tosell as status, p.tobuy as status_buy, ";
 		$sql .= " pfp.rowid as product_fourn_pri_id, pfp.entity, pfp.ref_fourn, pfp.desc_fourn, pfp.fk_product as product_fourn_id, pfp.fk_supplier_price_expression,";
 		$sql .= " pfp.price, pfp.quantity, pfp.unitprice, pfp.remise_percent, pfp.remise, pfp.tva_tx, pfp.fk_availability, pfp.charges, pfp.info_bits, pfp.delivery_time_days, pfp.supplier_reputation,";
 		$sql .= " pfp.multicurrency_price, pfp.multicurrency_unitprice, pfp.multicurrency_tx, pfp.fk_multicurrency, pfp.multicurrency_code, pfp.datec, pfp.tms,";
@@ -699,6 +700,8 @@ class ProductFournisseur extends Product
 
 				$prodfourn->product_ref = $record["product_ref"];
 				$prodfourn->product_fourn_price_id = $record["product_fourn_pri_id"];
+				$prodfourn->status					= $record["status"];
+				$prodfourn->status_buy				= $record["status_buy"];
 				$prodfourn->product_fourn_id = $record["product_fourn_id"];
 				$prodfourn->product_fourn_entity = $record["entity"];
 				$prodfourn->ref_supplier			= $record["ref_fourn"];
@@ -735,7 +738,7 @@ class ProductFournisseur extends Product
 					$prodfourn->supplier_fk_barcode_type = $record["fk_barcode_type"];
 				}
 
-				if (!empty($conf->dynamicprices->enabled) && !empty($prodfourn->fk_supplier_price_expression)) {
+				if (isModEnabled('dynamicprices') && !empty($prodfourn->fk_supplier_price_expression)) {
 					$priceparser = new PriceParser($this->db);
 					$price_result = $priceparser->parseProductSupplier($prodfourn);
 					if ($price_result >= 0) {
@@ -841,7 +844,7 @@ class ProductFournisseur extends Product
 					$fourn_unitprice = $record["unitprice"];
 					$fourn_unitprice_with_discount = $record["unitprice"] * (1 - $record["remise_percent"] / 100);
 
-					if (!empty($conf->dynamicprices->enabled) && !empty($record["fk_supplier_price_expression"])) {
+					if (isModEnabled('dynamicprices') && !empty($record["fk_supplier_price_expression"])) {
 						$prod_supplier = new ProductFournisseur($this->db);
 						$prod_supplier->product_fourn_price_id = $record["product_fourn_price_id"];
 						$prod_supplier->id = $prodid;
