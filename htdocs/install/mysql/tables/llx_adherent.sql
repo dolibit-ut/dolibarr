@@ -37,13 +37,13 @@ create table llx_adherent
   civility         varchar(6),
   lastname         varchar(50),
   firstname        varchar(50),
-  login            varchar(50),                 -- login
+  login            varchar(50),                 -- login / user name
   pass             varchar(50),                 -- password
   pass_crypted     varchar(128),
   fk_adherent_type integer NOT NULL,
   morphy           varchar(3) NOT NULL,         -- EN: legal entity / natural person  FR: personne morale / personne physique
   societe          varchar(128),			          -- company name (should be same length than societe.name). No more used.
-  fk_soc           integer NULL,		            -- Link to third party linked to member
+  fk_soc           integer NULL,                -- Link to third party linked to member
   address          text,
   zip              varchar(30),
   town             varchar(50),
@@ -68,20 +68,21 @@ create table llx_adherent
   phone_mobile     varchar(30),
   birth            date,                          -- birthday
   photo            varchar(255),                  -- filename or url of photo
-  statut           smallint NOT NULL DEFAULT 0,
-  public           smallint NOT NULL DEFAULT 0,   -- certain champ de la fiche sont ils public ou pas ?
-  datefin          datetime,                      -- end date of validity of the contribution / date de fin de validite de la cotisation
+  statut           smallint NOT NULL DEFAULT 0,   -- status / status / state:  1 valid, 0 canceled, -1 draft, -2 excluded
+  public           smallint NOT NULL DEFAULT 0,   -- information are public 
   default_lang     varchar(6) DEFAULT NULL,
   note_private     text DEFAULT NULL,
   note_public      text DEFAULT NULL,
   model_pdf		     varchar(255),
-  datevalid        datetime,                      -- date of validation
+  membersince      date,                          -- member since date
   datec            datetime,                      -- date of creation
+  datevalid        datetime,                      -- date of validation
+  datefin          datetime,                      -- end date of validity of the contribution / date de fin de validite de la cotisation
   tms              timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, -- last modification date
   fk_user_author   integer,                       -- can be null because member can be create by a guest
   fk_user_mod      integer,
   fk_user_valid    integer,
   canvas           varchar(32),                   -- type of canvas if used (null by default)
-  ip               varchar(250),                  -- ip used to create record (for public membership submission page)
+  ip               varchar(250),                  -- IP-address used to create record (for public membership submission page)
   import_key       varchar(14)                    -- Import key
 )ENGINE=innodb;
