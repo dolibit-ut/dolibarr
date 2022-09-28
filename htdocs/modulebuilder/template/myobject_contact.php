@@ -78,15 +78,17 @@ $extrafields->fetch_name_optionals_label($object->table_element);
 // Load object
 include DOL_DOCUMENT_ROOT.'/core/actions_fetchobject.inc.php'; // Must be include, not include_once  // Must be include, not include_once. Include fetch and fetch_thirdparty but not fetch_optionals
 
-// There is several ways to check permission.
+// There are several ways to check permission.
 // Set $enablepermissioncheck to 1 to enable a minimum low level of checks
 $enablepermissioncheck = 0;
 if ($enablepermissioncheck) {
-	$permissiontoread = $user->rights->mymodule->myobject->read;
-	$permission = $user->rights->mymodule->myobject->write;
+	$permissiontoread   = $user->rights->mymodule->myobject->read;
+	$permissiontowrite  = $user->rights->mymodule->myobject->write;
+	$permissiontodelete = $user->rights->mymodule->myobject->delete;
 } else {
-	$permissiontoread = 1;
-	$permission = 1;
+	$permissiontoread   = 1;
+	$permissiontowrite  = 1;
+	$permissiontodelete = 1;
 }
 
 // Security check (enable the most restrictive one)
@@ -98,6 +100,7 @@ if (!isModEnabled("mymodule")) {
 	accessforbidden();
 }
 if (!$permissiontoread) accessforbidden();
+
 
 
 /*
@@ -134,6 +137,7 @@ if ($action == 'addcontact' && $permission) {
 		dol_print_error($db);
 	}
 }
+
 
 
 /*
