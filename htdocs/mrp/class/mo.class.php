@@ -1,4 +1,5 @@
 <?php
+
 /* Copyright (C) 2017  Laurent Destailleur <eldy@users.sourceforge.net>
  * Copyright (C) 2020  Lenin Rivas		   <lenin@leninrivas.com>
  * Copyright (C) ---Put here your own copyright and developer email---
@@ -18,9 +19,9 @@
  */
 
 /**
- * \file        class/mo.class.php
+ * \file        mrp/class/mo.class.php
  * \ingroup     mrp
- * \brief       This file is a CRUD class file for Mo (Create/Read/Update/Delete)
+ * \brief       This file is a CRUD class (Create/Read/Update/Delete) for MO (Manufacturing Order)
  */
 
 // Put here all includes required by your class file
@@ -30,41 +31,41 @@ require_once DOL_DOCUMENT_ROOT.'/core/class/commonobjectline.class.php';
 //require_once DOL_DOCUMENT_ROOT . '/product/class/product.class.php';
 
 /**
- * Class for Mo
+ * Class for Mo (Manufacturing Order)
  */
 class Mo extends CommonObject
 {
 	/**
-	 * @var string ID to identify managed object
+	 *	@var  string 	ID to identify managed object
 	 */
 	public $element = 'mo';
 
 	/**
-	 * @var string Name of table without prefix where object is stored
+	 *	@var  string 	Name of table without prefix where object is stored
 	 */
 	public $table_element = 'mrp_mo';
 
 	/**
-	 * @var int  Does mo support multicompany module ? 0=No test on entity, 1=Test with field entity, 2=Test with link by societe
+	 *	@var  int  		Does MO support multicompany module ? 0= No test on entity, 1= Test with field entity, 2= Test with link by societe
 	 */
 	public $ismultientitymanaged = 1;
 
 	/**
-	 * @var int  Does mo support extrafields ? 0=No, 1=Yes
+	 *	@var  int  		Does MO support extrafields ? 0= No, 1= Yes
 	 */
 	public $isextrafieldmanaged = 1;
 
 	/**
-	 * @var string String with name of icon for mo. Must be the part after the 'object_' into object_mo.png
+	 *	@var  string 	String with name of icon for mo. Must be the part after the 'object_' into object_mo.png
 	 */
 	public $picto = 'mrp';
 
-
-	const STATUS_DRAFT = 0;
-	const STATUS_VALIDATED = 1; // To produce
+	// defined MO states 
+	const STATUS_DRAFT      = 0;
+	const STATUS_VALIDATED  = 1;  // to produce
 	const STATUS_INPROGRESS = 2;
-	const STATUS_PRODUCED = 3;
-	const STATUS_CANCELED = 9;
+	const STATUS_PRODUCED   = 3;
+	const STATUS_CANCELED   = 9;
 
 
 	/**
@@ -95,7 +96,7 @@ class Mo extends CommonObject
 
 	// BEGIN MODULEBUILDER PROPERTIES
 	/**
-	 * @var array  Array with all fields and their property. Do not use it as a static var. It may be modified by constructor.
+	 *	@var  array 	Array with all fields and their properties. Do not use it as a static var. It's may be modified by constructor.
 	 */
 	public $fields = array(
 		'rowid' => array('type'=>'integer', 'label'=>'TechnicalID', 'enabled'=>1, 'visible'=>-2, 'position'=>1, 'notnull'=>1, 'index'=>1, 'comment'=>"Id",),
@@ -123,51 +124,31 @@ class Mo extends CommonObject
 		'status' => array('type'=>'integer', 'label'=>'Status', 'enabled'=>1, 'visible'=>2, 'position'=>1000, 'default'=>0, 'notnull'=>1, 'index'=>1, 'arrayofkeyval'=>array('0'=>'Draft', '1'=>'Validated', '2'=>'InProgress', '3'=>'StatusMOProduced', '9'=>'Canceled')),
 		'fk_parent_line' => array('type'=>'integer:MoLine:mrp/class/mo.class.php', 'label'=>'ParentMo', 'enabled'=>1, 'visible'=>0, 'position'=>1020, 'default'=>0, 'notnull'=>0, 'index'=>1,'showoncombobox'=>0),
 	);
+	
+	
 	public $rowid;
 	public $entity;
 	public $ref;
-	public $mrptype;
-	public $label;
-	public $qty;
-	public $fk_warehouse;
-	public $fk_soc;
-
-	/**
-	 * @var string public note
-	 */
-	public $note_public;
-
-	/**
-	 * @var string private note
-	 */
-	public $note_private;
-
-	/**
-	 * @var integer|string date_creation
-	 */
-	public $date_creation;
-
-
-	public $tms;
-	public $fk_user_creat;
-	public $fk_user_modif;
-	public $import_key;
-	public $status;
-	public $fk_product;
-
-	/**
-	 * @var integer|string date_start_planned
-	 */
-	public $date_start_planned;
-
-	/**
-	 * @var integer|string date_end_planned
-	 */
-	public $date_end_planned;
-
-
 	public $fk_bom;
+	public $mrptype;
+	public $fk_product;
+	public $qty;
+	public $label;
+	public $fk_soc;
 	public $fk_project;
+	public $fk_warehouse;
+	public $note_public;
+	public $note_private;
+	public $date_creation;
+	public $tms;
+	public $fk_user_creat; 
+	public $fk_user_modif;
+	public $date_start_planned;
+	public $date_end_planned;
+	public $import_key;
+	public $status;			
+	
+    	
 	// END MODULEBUILDER PROPERTIES
 
 
@@ -246,11 +227,11 @@ class Mo extends CommonObject
 	}
 
 	/**
-	 * Create object into database
+	 *	Create object into database
 	 *
-	 * @param  User $user      User that creates
-	 * @param  bool $notrigger false=launch triggers after, true=disable triggers
-	 * @return int             <=0 if KO, Id of created object if OK
+	 *	@param   User 	$user 		User that creates
+	 *	@param   bool 	$notrigger	false= launch triggers after, true= disable triggers
+	 *	@return  int 				<=0 if KO, Id of created object if OK
 	 */
 	public function create(User $user, $notrigger = false)
 	{
@@ -306,11 +287,11 @@ class Mo extends CommonObject
 	}
 
 	/**
-	 * Clone an object into another one
+	 *	Clone an object into another one
 	 *
-	 * @param  	User 	$user      	User that creates
-	 * @param  	int 	$fromid     Id of object to clone
-	 * @return 	mixed 				New object created, <0 if KO
+	 *	@param   User 	$user      	User that creates
+	 *	@param   int 	$fromid     Id of object to clone
+	 *	@return  mixed 				New object created, <0 if KO
 	 */
 	public function createFromClone(User $user, $fromid)
 	{
@@ -394,11 +375,11 @@ class Mo extends CommonObject
 	}
 
 	/**
-	 * Load object in memory from the database
+	 *	Load object in memory from the database
 	 *
-	 * @param int    $id   Id object
-	 * @param string $ref  Ref
-	 * @return int         <0 if KO, 0 if not found, >0 if OK
+	 *	@param    int    	$id 	Id object
+	 *	@param    string 	$ref 	Ref
+	 *	@return   int 				<0 if KO, 0 if not found, >0 if OK
 	 */
 	public function fetch($id, $ref = null)
 	{
@@ -410,9 +391,9 @@ class Mo extends CommonObject
 	}
 
 	/**
-	 * Load object lines in memory from the database
+	 *	Load object lines in memory from the database
 	 *
-	 * @return int         <0 if KO, 0 if not found, >0 if OK
+	 *	@return   int 				<0 if KO, 0 if not found, >0 if OK
 	 */
 	public function fetchLines()
 	{
@@ -424,15 +405,15 @@ class Mo extends CommonObject
 
 
 	/**
-	 * Load list of objects in memory from the database.
+	 *	Load list of objects in memory from the database.
 	 *
-	 * @param  string      $sortorder    Sort Order
-	 * @param  string      $sortfield    Sort field
-	 * @param  int         $limit        limit
-	 * @param  int         $offset       Offset
-	 * @param  array       $filter       Filter array. Example array('field'=>'valueforlike', 'customurl'=>...)
-	 * @param  string      $filtermode   Filter mode (AND or OR)
-	 * @return array|int                 int <0 if KO, array of pages if OK
+	 *	@param   string 	$sortorder 		Sort Order
+	 *	@param   string 	$sortfield 		Sort field
+	 *	@param   int 		$limit 			limit
+	 *	@param   int 		$offset 		Offset
+	 *	@param   array 		$filter 		Filter array. Example array('field'=>'valueforlike', 'customurl'=>...)
+	 *	@param   string 	$filtermode 	Filter mode (AND or OR)
+	 *	@return  array|int 					int <0 if KO, array of pages if OK
 	 */
 	public function fetchAll($sortorder = '', $sortfield = '', $limit = 0, $offset = 0, array $filter = array(), $filtermode = 'AND')
 	{
@@ -502,11 +483,11 @@ class Mo extends CommonObject
 	}
 
 	/**
-	 * Get list of lines linked to current line for a defined role.
+	 *	Get list of lines linked to current line for a defined role.
 	 *
-	 * @param  	string 	$role      	Get lines linked to current line with the selected role ('consumed', 'produced', ...)
-	 * @param	int		$lineid		Id of production line to filter childs
-	 * @return 	array             	Array of lines
+	 *	@param 		string 		$role 		Get lines linked to current line with the selected role ('consumed', 'produced', ...)
+	 *	@param		int			$lineid		Id of production line to filter childs
+	 *	@return 	array 					Array of lines
 	 */
 	public function fetchLinesLinked($role, $lineid = 0)
 	{
@@ -555,9 +536,9 @@ class Mo extends CommonObject
 
 
 	/**
-	 * Count number of movement with origin of MO
+	 *	Count number of movement with origin of MO
 	 *
-	 * @return 	int			Number of movements
+	 *	@return 	int			Number of movements
 	 */
 	public function countMovements()
 	{
@@ -588,11 +569,11 @@ class Mo extends CommonObject
 
 
 	/**
-	 * Update object into database
+	 *	Update object into database
 	 *
-	 * @param  User $user      User that modifies
-	 * @param  bool $notrigger false=launch triggers after, true=disable triggers
-	 * @return int             <0 if KO, >0 if OK
+	 *	@param 		User 	$user 			User that modifies
+	 *	@param 		bool 	$notrigger 		false= launch triggers after, true=disable triggers
+	 *	@return 	int 					<0 if KO, >0 if OK
 	 */
 	public function update(User $user, $notrigger = false)
 	{
@@ -622,11 +603,11 @@ class Mo extends CommonObject
 	}
 
 	/**
-	 * Erase and update the line to consume and to produce.
+	 *	Erase and update the line to consume and to produce.
 	 *
-	 * @param  User $user      User that modifies
-	 * @param  bool $notrigger false=launch triggers after, true=disable triggers
-	 * @return int             <0 if KO, >0 if OK
+	 *	@param 		User 	$user 			User that modifies
+	 *	@param 		bool 	$notrigger 		false= launch triggers after, true= disable triggers
+	 *	@return 	int 					<0 if KO, >0 if OK
 	 */
 	public function updateProduction(User $user, $notrigger = true)
 	{
@@ -735,11 +716,11 @@ class Mo extends CommonObject
 
 
 	/**
-	 * Delete object in database
+	 *	Delete object in database
 	 *
-	 * @param User $user       User that deletes
-	 * @param bool $notrigger  false=launch triggers after, true=disable triggers
-	 * @return int             <0 if KO, >0 if OK
+	 *	@param 		User 	$user 			User that deletes
+	 *	@param 		bool 	$notrigger 		false= launch triggers after, true= disable triggers
+	 *	@return 	int 					<0 if KO, >0 if OK
 	 */
 	public function delete(User $user, $notrigger = false)
 	{
@@ -748,12 +729,12 @@ class Mo extends CommonObject
 	}
 
 	/**
-	 *  Delete a line of object in database
+	 *	Delete a line of object in database
 	 *
-	 *	@param  User	$user       User that delete
-	 *  @param	int		$idline		Id of line to delete
-	 *  @param 	bool 	$notrigger  false=launch triggers after, true=disable triggers
-	 *  @return int         		>0 if OK, <0 if KO
+	 *	@param 		User 	$user 			User that delete
+	 *	@param 		int 	$idline			Id of line to delete
+	 *	@param 		bool 	$notrigger  	false= launch triggers after, true= disable triggers
+	 *	@return 	int 					>0 if OK, <0 if KO
 	 */
 	public function deleteLine(User $user, $idline, $notrigger = false)
 	{
@@ -834,11 +815,11 @@ class Mo extends CommonObject
 
 
 	/**
-	 *  Returns the reference to the following non used MO depending on the active numbering module
-	 *  defined into MRP_MO_ADDON
+	 *	Returns the reference to the following non used MO depending on the active numbering module
+	 *	defined into MRP_MO_ADDON
 	 *
-	 *  @param	Product		$prod 	Object product
-	 *  @return string      		MO free reference
+	 *	@param   Product 	$prod 		Object product
+	 *	@return  string 				MO free reference
 	 */
 	public function getNextNumRef($prod)
 	{
@@ -884,9 +865,9 @@ class Mo extends CommonObject
 	/**
 	 *	Validate Mo
 	 *
-	 *	@param		User	$user     		User making status change
-	 *  @param		int		$notrigger		1=Does not execute triggers, 0= execute triggers
-	 *	@return  	int						<=0 if OK, 0=Nothing done, >0 if KO
+	 *	@param   User 		$user 			User making status change
+	 *	@param   int 		$notrigger 		1= Does not execute triggers, 0= execute triggers
+	 *	@return  int 						<=0 if OK, 0=Nothing done, >0 if KO
 	 */
 	public function validate($user, $notrigger = 0)
 	{
@@ -1003,9 +984,9 @@ class Mo extends CommonObject
 	/**
 	 *	Set draft status
 	 *
-	 *	@param	User	$user			Object user that modify
-	 *  @param	int		$notrigger		1=Does not execute triggers, 0=Execute triggers
-	 *	@return	int						<0 if KO, >0 if OK
+	 *	@param   User 		$user 			Object user that modify
+	 *	@param   int 		$notrigger 		1= Does not execute triggers, 0= Execute triggers
+	 *	@return  int						<0 if KO, >0 if OK
 	 */
 	public function setDraft($user, $notrigger = 0)
 	{
@@ -1027,9 +1008,9 @@ class Mo extends CommonObject
 	/**
 	 *	Set cancel status
 	 *
-	 *	@param	User	$user			Object user that modify
-	 *  @param	int		$notrigger		1=Does not execute triggers, 0=Execute triggers
-	 *	@return	int						<0 if KO, 0=Nothing done, >0 if OK
+	 *	@param   User 		$user 			Object user that modify
+	 *	@param   int 		$notrigger 		1= Does not execute triggers, 0= Execute triggers
+	 *	@return  int						<0 if KO, 0=Nothing done, >0 if OK
 	 */
 	public function cancel($user, $notrigger = 0)
 	{
@@ -1051,9 +1032,9 @@ class Mo extends CommonObject
 	/**
 	 *	Set back to validated status
 	 *
-	 *	@param	User	$user			Object user that modify
-	 *  @param	int		$notrigger		1=Does not execute triggers, 0=Execute triggers
-	 *	@return	int						<0 if KO, 0=Nothing done, >0 if OK
+	 *	@param   User 		$user 			Object user that modify
+	 *	@param   int 		$notrigger 		1= Does not execute triggers, 0= Execute triggers
+	 *	@return  int						<0 if KO, 0=Nothing done, >0 if OK
 	 */
 	public function reopen($user, $notrigger = 0)
 	{
@@ -1073,14 +1054,14 @@ class Mo extends CommonObject
 	}
 
 	/**
-	 *  Return a link to the object card (with optionaly the picto)
+	 *	Return a link to the object card (with optionaly the picto)
 	 *
-	 *  @param  int     $withpicto                  Include picto in link (0=No picto, 1=Include picto into link, 2=Only picto)
-	 *  @param  string  $option                     On what the link point to ('nolink', '', 'production', ...)
-	 *  @param  int     $notooltip                  1=Disable tooltip
-	 *  @param  string  $morecss                    Add more css on link
-	 *  @param  int     $save_lastsearch_value      -1=Auto, 0=No save of lastsearch_values when clicking, 1=Save lastsearch_values whenclicking
-	 *  @return	string                              String with URL
+	 *	@param   int 		$withpicto 					Include picto in link (0=No picto, 1=Include picto into link, 2=Only picto)
+	 *	@param   string 	$option 					On what the link point to ('nolink', '', 'production', ...)
+	 *	@param   int 		$notooltip                  1= Disable tooltip
+	 *	@param   string 	$morecss 					Add more css on link
+	 *	@param   int 		$save_lastsearch_value      -1= Auto, 0= No save of lastsearch_values when clicking, 1= Save lastsearch_values when clicking
+	 *	@return  string 								String with URL
 	 */
 	public function getNomUrl($withpicto = 0, $option = '', $notooltip = 0, $morecss = '', $save_lastsearch_value = -1)
 	{
@@ -1158,10 +1139,10 @@ class Mo extends CommonObject
 	}
 
 	/**
-	 *  Return label of the status
+	 *	Return label of the status
 	 *
-	 *  @param  int		$mode          0=long label, 1=short label, 2=Picto + short label, 3=Picto, 4=Picto + long label, 5=Short label + Picto, 6=Long label + Picto
-	 *  @return	string 			       Label of status
+	 *	@param    int 		$mode 		0= long label, 1= short label, 2= Picto + short label, 3= Picto, 4= Picto + long label, 5= Short label + Picto, 6= Long label + Picto
+	 *	@return	  string 				Label of status
 	 */
 	public function getLibStatut($mode = 0)
 	{
@@ -1169,12 +1150,13 @@ class Mo extends CommonObject
 	}
 
 	// phpcs:disable PEAR.NamingConventions.ValidFunctionName.ScopeNotCamelCaps
+	
 	/**
-	 *  Return the status
+	 *	Return the status
 	 *
-	 *  @param	int		$status        Id status
-	 *  @param  int		$mode          0=long label, 1=short label, 2=Picto + short label, 3=Picto, 4=Picto + long label, 5=Short label + Picto, 6=Long label + Picto
-	 *  @return string 			       Label of status
+	 *	@param   int 		$status 	Id status
+	 *	@param   int 		$mode 		0= long label, 1= short label, 2= Picto + short label, 3= Picto, 4= Picto + long label, 5= Short label + Picto, 6= Long label + Picto
+	 *	@return  string 				Label of status
 	 */
 	public function LibStatut($status, $mode = 0)
 	{
@@ -1213,10 +1195,10 @@ class Mo extends CommonObject
 	}
 
 	/**
-	 *	Load the info information in the object
+	 *	Load the information (info) in the object
 	 *
-	 *	@param  int		$id       Id of object
-	 *	@return	void
+	 *	@param   int 		$id 	Id of object
+	 *	@return  void
 	 */
 	public function info($id)
 	{
@@ -1230,10 +1212,10 @@ class Mo extends CommonObject
 				$obj = $this->db->fetch_object($result);
 				$this->id = $obj->rowid;
 
-				$this->user_creation_id = $obj->fk_user_creat;
+				$this->user_creation_id     = $obj->fk_user_creat;
 				$this->user_modification_id = $obj->fk_user_modif;
-				$this->date_creation     = $this->db->jdate($obj->datec);
-				$this->date_modification = empty($obj->datem) ? '' : $this->db->jdate($obj->datem);
+				$this->date_creation        = $this->db->jdate($obj->datec);
+				$this->date_modification    = empty($obj->datem) ? '' : $this->db->jdate($obj->datem);
 			}
 
 			$this->db->free($result);
@@ -1243,10 +1225,10 @@ class Mo extends CommonObject
 	}
 
 	/**
-	 * Initialise object with example values
-	 * Id must be 0 if object instance is a specimen
+	 *	Initialise object with example values
+	 *	Id must be 0 if object instance is a specimen
 	 *
-	 * @return void
+	 *	@return  void
 	 */
 	public function initAsSpecimen()
 	{
@@ -1256,9 +1238,10 @@ class Mo extends CommonObject
 	}
 
 	/**
-	 * 	Create an array of lines
-	 * 	@param string $rolefilter string lines role filter
-	 * 	@return array|int		array of lines if OK, <0 if KO
+	 *	Create an array of lines
+	 *
+	 *	@param   string 	$rolefilter 	string lines role filter
+	 *	@return  array|int 					array of lines if OK, <0 if KO
 	 */
 	public function getLinesArray($rolefilter = '')
 	{
@@ -1281,15 +1264,15 @@ class Mo extends CommonObject
 	}
 
 	/**
-	 *  Create a document onto disk according to template module.
+	 *	Create a document onto disk according to template module.
 	 *
-	 *  @param	    string		$modele			Force template to use ('' to not force)
-	 *  @param		Translate	$outputlangs	objet lang a utiliser pour traduction
-	 *  @param      int			$hidedetails    Hide details of lines
-	 *  @param      int			$hidedesc       Hide description
-	 *  @param      int			$hideref        Hide ref
-	 *  @param      null|array  $moreparams     Array to provide more information
-	 *  @return     int         				0 if KO, 1 if OK
+	 *	@param   string 		$modele			Force template to use ('' to not force)
+	 *	@param   Translate 		$outputlangs 	objet lang a utiliser pour traduction
+	 *	@param   int 			$hidedetails 	Hide details of lines
+	 *	@param   int 			$hidedesc 		Hide description
+	 *	@param   int 			$hideref 		Hide ref
+	 *	@param   null|array 	$moreparams 	Array to provide more information
+	 *	@return  int 							0 if KO, 1 if OK
 	 */
 	public function generateDocument($modele, $outputlangs, $hidedetails = 0, $hidedesc = 0, $hideref = 0, $moreparams = null)
 	{
@@ -1318,11 +1301,11 @@ class Mo extends CommonObject
 	}
 
 	/**
-	 * Action executed by scheduler
-	 * CAN BE A CRON TASK. In such a case, parameters come from the schedule job setup field 'Parameters'
-	 * Use public function doScheduledJob($param1, $param2, ...) to get parameters
+	 *	Action executed by scheduler
+	 *	CAN BE A CRON TASK. In such a case, parameters come from the schedule job setup field 'Parameters'
+	 *	Use public function doScheduledJob($param1, $param2, ...) to get parameters
 	 *
-	 * @return	int			0 if OK, <>0 if KO (this function is used also by cron so only 0 is OK)
+	 *	@return	 int		0 if OK, <>0 if KO (this function is used also by cron so only 0 is OK)
 	 */
 	public function doScheduledJob()
 	{
@@ -1353,15 +1336,15 @@ class Mo extends CommonObject
 	 *  If lines are into a template, title must also be into a template
 	 *  But for the moment we don't know if it's possible, so we keep the method available on overloaded objects.
 	 *
-	 *	@param	string		$restrictlist		''=All lines, 'services'=Restrict to services only
-	 *  @param  array       $selectedLines      Array of lines id for selected lines
-	 *  @return	void
+	 *	@param   string 	$restrictlist 		''= All lines, 'services'= Restrict to services only
+	 *  @param   array 		$selectedLines 		Array of lines id for selected lines
+	 *  @return	 void
 	 */
 	public function printOriginLinesList($restrictlist = '', $selectedLines = array())
 	{
 		global $langs, $hookmanager, $conf, $form;
-
 		$langs->load('stocks');
+		
 		$text_stock_options = $langs->trans("RealStockDesc").'<br>';
 		$text_stock_options .= $langs->trans("RealStockWillAutomaticallyWhen").'<br>';
 		$text_stock_options .= (!empty($conf->global->STOCK_CALCULATE_ON_SHIPMENT) || !empty($conf->global->STOCK_CALCULATE_ON_SHIPMENT_CLOSE) ? '- '.$langs->trans("DeStockOnShipment").'<br>' : '');
@@ -1417,17 +1400,17 @@ class Mo extends CommonObject
 
 
 	/**
-	 * 	Return HTML with a line of table array of source object lines
-	 *  TODO Move this and previous function into output html class file (htmlline.class.php).
-	 *  If lines are into a template, title must also be into a template
-	 *  But for the moment we don't know if it's possible as we keep a method available on overloaded objects.
+	 *	Return HTML with a line of table array of source object lines
+	 *	TODO Move this and previous function into output html class file (htmlline.class.php).
+	 *	If lines are into a template, title must also be into a template
+	 *	But for the moment we don't know if it's possible as we keep a method available on overloaded objects.
 	 *
-	 * 	@param	CommonObjectLine	$line				Line
-	 * 	@param	string				$var				Var
-	 *	@param	string				$restrictlist		''=All lines, 'services'=Restrict to services only (strike line if not)
-	 *  @param	string				$defaulttpldir		Directory where to find the template
-	 *  @param  array       		$selectedLines      Array of lines id for selected lines
-	 * 	@return	void
+	 *	@param   CommonObjectLine 	$line 				Line
+	 *	@param   string 			$var 				Var
+	 *	@param   string 			$restrictlist 		''= All lines, 'services'= Restrict to services only (strike line if not)
+	 *	@param   string 			$defaulttpldir 		Directory where to find the template
+	 *	@param   array 				$selectedLines 		Array of lines id for selected lines
+	 *	@return  void
 	 */
 	public function printOriginLine($line, $var, $restrictlist = '', $defaulttpldir = '/core/tpl', $selectedLines = array())
 	{
@@ -1465,12 +1448,12 @@ class Mo extends CommonObject
 	}
 
 	/**
-	 * Function used to replace a thirdparty id with another one.
+	 *	Function used to replace a thirdparty id with another one.
 	 *
-	 * @param DoliDB 	$db 			Database handler
-	 * @param int 		$origin_id 		Old thirdparty id
-	 * @param int 		$dest_id 		New thirdparty id
-	 * @return bool
+	 *	@param   DoliDB 	$db 			Database handler
+	 *	@param   int 		$origin_id 		old thirdparty id
+	 *	@param   int 		$dest_id 		new thirdparty id
+	 *	@return  bool
 	 */
 	public static function replaceThirdparty($db, $origin_id, $dest_id)
 	{
@@ -1481,9 +1464,9 @@ class Mo extends CommonObject
 
 
 	/**
-	 * Function used to return childs of Mo
+	 *	Function used to return childs of Mo
 	 *
-	 * @return array if OK, -1 if KO
+	 *	@return  array if OK, -1 if KO
 	 */
 	public function getMoChilds()
 	{
@@ -1519,9 +1502,9 @@ class Mo extends CommonObject
 	}
 
 	/**
-	 * Function used to return childs of Mo
+	 *	Function used to return childs of Mo
 	 *
-	 * @return object Mo if OK, -1 if KO, 0 if not exist
+	 *	@return  object 	Mo if OK, -1 if KO, 0 if not exist
 	 */
 	public function getMoParent()
 	{
@@ -1555,28 +1538,29 @@ class Mo extends CommonObject
 	}
 }
 
+
 /**
- * Class MoLine. You can also remove this and generate a CRUD class for lines objects.
+ *	Class MoLine. You can also remove this and generate a CRUD class for lines objects.
  */
 class MoLine extends CommonObjectLine
 {
 	/**
-	 * @var string ID to identify managed object
+	 *	@var  string 	ID to identify managed object
 	 */
 	public $element = 'mrp_production';
 
 	/**
-	 * @var string Name of table without prefix where object is stored
+	 *	@var  string	Name of table without prefix where object is stored
 	 */
 	public $table_element = 'mrp_production';
 
 	/**
-	 * @var int  Does myobject support multicompany module ? 0=No test on entity, 1=Test with field entity, 2=Test with link by societe
+	 *	@var  int 	Does myobject support multicompany module? 0= No test on entity, 1= Test with field entity, 2= Test with link by societe
 	 */
 	public $ismultientitymanaged = 0;
 
 	/**
-	 * @var int  Does moline support extrafields ? 0=No, 1=Yes
+	 *	@var  int 	Does moline support extrafields? 0= No, 1= Yes
 	 */
 	public $isextrafieldmanaged = 0;
 
@@ -1623,9 +1607,9 @@ class MoLine extends CommonObjectLine
 	public $import_key;
 
 	/**
-	 * Constructor
+	 *	Constructor
 	 *
-	 * @param DoliDb $db Database handler
+	 *	@param  DoliDb 	$db 	Database handler
 	 */
 	public function __construct(DoliDB $db)
 	{
@@ -1660,11 +1644,11 @@ class MoLine extends CommonObjectLine
 	}
 
 	/**
-	 * Create object into database
+	 *	Create object into database
 	 *
-	 * @param  User $user      User that creates
-	 * @param  bool $notrigger false=launch triggers after, true=disable triggers
-	 * @return int             <0 if KO, Id of created object if OK
+	 *	@param   User 	$user 			User that creates
+	 *	@param   bool 	$notrigger 		false= launch triggers after, true= disable triggers
+	 *	@return  int 					<0 if KO, Id of created object if OK
 	 */
 	public function create(User $user, $notrigger = false)
 	{
@@ -1677,11 +1661,11 @@ class MoLine extends CommonObjectLine
 	}
 
 	/**
-	 * Load object in memory from the database
+	 *	Load object in memory from the database
 	 *
-	 * @param int    $id   Id object
-	 * @param string $ref  Ref
-	 * @return int         <0 if KO, 0 if not found, >0 if OK
+	 *	@param   int 		$id 		Id object
+	 *	@param   string 	$ref 		Ref
+	 *	@return  int 					<0 if KO, 0 if not found, >0 if OK
 	 */
 	public function fetch($id, $ref = null)
 	{
@@ -1690,15 +1674,15 @@ class MoLine extends CommonObjectLine
 	}
 
 	/**
-	 * Load list of objects in memory from the database.
+	 *	Load list of objects in memory from the database.
 	 *
-	 * @param  string      $sortorder    Sort Order
-	 * @param  string      $sortfield    Sort field
-	 * @param  int         $limit        limit
-	 * @param  int         $offset       Offset
-	 * @param  array       $filter       Filter array. Example array('field'=>'valueforlike', 'customurl'=>...)
-	 * @param  string      $filtermode   Filter mode (AND or OR)
-	 * @return array|int                 int <0 if KO, array of pages if OK
+	 *	@param   string 	$sortorder 		Sort Order
+	 *	@param   string 	$sortfield 		Sort field
+	 *	@param   int 		$limit 			limit
+	 *	@param   int 		$offset 		Offset
+	 *	@param   array 		$filter 		Filter array. Example array('field'=>'valueforlike', 'customurl'=>...)
+	 *	@param   string 	$filtermode 	Filter mode (AND or OR)
+	 *	@return  array|int 					int <0 if KO, array of pages if OK
 	 */
 	public function fetchAll($sortorder = '', $sortfield = '', $limit = 0, $offset = 0, array $filter = array(), $filtermode = 'AND')
 	{
@@ -1768,11 +1752,11 @@ class MoLine extends CommonObjectLine
 	}
 
 	/**
-	 * Update object into database
+	 *	Update object into database
 	 *
-	 * @param  User $user      User that modifies
-	 * @param  bool $notrigger false=launch triggers after, true=disable triggers
-	 * @return int             <0 if KO, >0 if OK
+	 *	@param   User 	$user 		User that modifies
+	 *	@param   bool 	$notrigger 	false= launch triggers after, true=	disable triggers
+	 *	@return  int 				<0 if KO, >0 if OK
 	 */
 	public function update(User $user, $notrigger = false)
 	{
@@ -1780,11 +1764,11 @@ class MoLine extends CommonObjectLine
 	}
 
 	/**
-	 * Delete object in database
+	 *	Delete object in database
 	 *
-	 * @param User $user       User that deletes
-	 * @param bool $notrigger  false=launch triggers after, true=disable triggers
-	 * @return int             <0 if KO, >0 if OK
+	 *	@param   User 	$user 		User that deletes
+	 *	@param   bool 	$notrigger 	false= launch triggers after, true= disable triggers
+	 *	@return  int 				<0 if KO, >0 if OK
 	 */
 	public function delete(User $user, $notrigger = false)
 	{
