@@ -21,83 +21,83 @@
 
 
 /**
- *	Class to manage Blocked Log
+ *  Class to manage Blocked Log
  */
 class BlockedLog
 {
 	/**
-	 * Id of the log
-	 * @var int
+	 *  Id of the log
+	 *  @var int
 	 */
 	public $id;
 
 	/**
-	 * Entity
-	 * @var int
+	 *  Entity
+	 *  @var int
 	 */
 	public $entity;
 
 	/**
-	 * @var string Error message
+	 *  @var string Error message
 	 */
 	public $error = '';
 
 	/**
-	 * @var string[] Error codes (or messages)
+	 *  @var string[] Error codes (or messages)
 	 */
 	public $errors = array();
 
 	/**
-	 * Unique fingerprint of the log
-	 * @var string
+	 *  Unique fingerprint of the log
+	 *  @var string
 	 */
 	public $signature = '';
 
 	/**
-	 * Unique fingerprint of the line log content
-	 * @var string
+	 *  Unique fingerprint of the line log content
+	 *  @var string
 	 */
 	public $signature_line = '';
 
 	public $amounts = null;
 
 	/**
-	 * trigger action
-	 * @var string
+	 *  trigger action
+	 *  @var string
 	 */
 	public $action = '';
 
 	/**
-	 * Object element
-	 * @var string
+	 *  Object element
+	 *  @var string
 	 */
 	public $element = '';
 
 	/**
-	 * Object id
-	 * @var int
+	 *  Object id
+	 *  @var int
 	 */
 	public $fk_object = 0;
 
 	/**
-	 * Log certified by remote authority or not
-	 * @var boolean
+	 *  Log certified by remote authority or not
+	 *  @var boolean
 	 */
 	public $certified = false;
 
 	/**
-	 * Author
-	 * @var int
+	 *  Author
+	 *  @var int
 	 */
 	public $fk_user = 0;
 
 	/**
-	 * @var integer|string date_creation
+	 *  @var integer|string date_creation
 	 */
 	public $date_creation;
 
 	/**
-	 * @var integer|string $date_modification;
+	 *  @var integer|string $date_modification;
 	 */
 	public $date_modification;
 
@@ -111,17 +111,17 @@ class BlockedLog
 	public $user_fullname = '';
 
 	/**
-	 * Array of tracked event codes
-	 * @var string[]
+	 *  Array of tracked event codes
+	 *  @var string[]
 	 */
 	public $trackedevents = array();
 
 
 
 	/**
-	 *      Constructor
+	 *   Constructor
 	 *
-	 *      @param		DoliDB		$db      Database handler
+	 *   @param		DoliDB		$db      Database handler
 	 */
 	public function __construct(DoliDB $db)
 	{
@@ -130,9 +130,9 @@ class BlockedLog
 
 
 	/**
-	 * Load list of tracked events into $this->trackedevents.
+	 *  Load list of tracked events into $this->trackedevents.
 	 *
-	 * @return int			Always 1
+	 *  @return int			Always 1
 	 */
 	public function loadTrackedEvents()
 	{
@@ -216,9 +216,9 @@ class BlockedLog
 	}
 
 	/**
-	 * Try to retrieve source object (it it still exists).
+	 *  Try to retrieve source object (it it still exists).
 	 *
-	 * @return string		URL string of source object
+	 *  @return string		URL string of source object
 	 */
 	public function getObjectLink()
 	{
@@ -726,10 +726,10 @@ class BlockedLog
 	}
 
 	/**
-	 *	Get object from database
+	 *  Get object from database
 	 *
-	 *	@param      int		$id       	Id of object to load
-	 *	@return     int         			>0 if OK, <0 if KO, 0 if not found
+	 *  @param  	int		$id       	Id of object to load
+	 *  @return  	int         		>0 if OK, <0 if KO, 0 if not found
 	 */
 	public function fetch($id)
 	{
@@ -751,30 +751,30 @@ class BlockedLog
 		if ($resql) {
 			$obj = $this->db->fetch_object($resql);
 			if ($obj) {
-				$this->id = $obj->rowid;
-				$this->entity = $obj->entity;
-				$this->ref				= $obj->rowid;
+				$this->id 				= $obj->rowid;
+				$this->entity 			= $obj->entity;
+				$this->ref 				= $obj->rowid;
 
-				$this->date_creation = $this->db->jdate($obj->date_creation);
-				$this->tms				= $this->db->jdate($obj->tms);
+				$this->date_creation 	= $this->db->jdate($obj->date_creation);
+				$this->tms 				= $this->db->jdate($obj->tms);
 
-				$this->amounts			= (double) $obj->amounts;
-				$this->action = $obj->action;
-				$this->element			= $obj->element;
+				$this->amounts 			= (double) $obj->amounts;
+				$this->action 			= $obj->action;
+				$this->element 			= $obj->element;
 
-				$this->fk_object = $obj->fk_object;
-				$this->date_object = $this->db->jdate($obj->date_object);
-				$this->ref_object = $obj->ref_object;
+				$this->fk_object 		= $obj->fk_object;
+				$this->date_object 		= $this->db->jdate($obj->date_object);
+				$this->ref_object 		= $obj->ref_object;
 
-				$this->fk_user = $obj->fk_user;
-				$this->user_fullname = $obj->user_fullname;
+				$this->fk_user 			= $obj->fk_user;
+				$this->user_fullname 	= $obj->user_fullname;
 
-				$this->object_data = $this->dolDecodeBlockedData($obj->object_data);
-				$this->object_version = $obj->object_version;
+				$this->object_data 		= $this->dolDecodeBlockedData($obj->object_data);
+				$this->object_version 	= $obj->object_version;
 
-				$this->signature		= $obj->signature;
-				$this->signature_line = $obj->signature_line;
-				$this->certified		= ($obj->certified == 1);
+				$this->signature 		= $obj->signature;
+				$this->signature_line 	= $obj->signature_line;
+				$this->certified 		= ($obj->certified == 1);
 
 				return 1;
 			} else {
@@ -790,11 +790,11 @@ class BlockedLog
 
 
 	/**
-	 * Encode data
+	 *  Encode data
 	 *
-	 * @param	string	$data	Data to serialize
-	 * @param	string	$mode	0=serialize, 1=json_encode
-	 * @return 	string			Value serialized, an object (stdClass)
+	 *  @param  string	$data	Data to serialize
+	 *  @param  string	$mode	0=serialize, 1=json_encode
+	 *  @return string			Value serialized, an object (stdClass)
 	 */
 	public function dolEncodeBlockedData($data, $mode = 0)
 	{
@@ -810,11 +810,11 @@ class BlockedLog
 
 
 	/**
-	 * Decode data
+	 *  Decode data
 	 *
-	 * @param	string	$data	Data to unserialize
-	 * @param	string	$mode	0=unserialize, 1=json_decode
-	 * @return 	object			Value unserialized, an object (stdClass)
+	 *  @param  string	$data	Data to unserialize
+	 *  @param  string	$mode	0=unserialize, 1=json_decode
+	 *  @return object			Value unserialized, an object (stdClass)
 	 */
 	public function dolDecodeBlockedData($data, $mode = 0)
 	{
@@ -830,9 +830,9 @@ class BlockedLog
 
 
 	/**
-	 *	Set block certified by authority
+	 *  Set block certified by authority
 	 *
-	 *	@return	boolean
+	 *  @return	boolean
 	 */
 	public function setCertified()
 	{
@@ -846,11 +846,11 @@ class BlockedLog
 	}
 
 	/**
-	 *	Create blocked log in database.
+	 *  Create blocked log in database.
 	 *
-	 *	@param	User	$user      			Object user that create
+	 *  @param	User	$user      			Object user that create
 	 *  @param	int		$forcesignature		Force signature (for example '0000000000' when we disabled the module)
-	 *	@return	int							<0 if KO, >0 if OK
+	 *  @return	int							<0 if KO, >0 if OK
 	 */
 	public function create($user, $forcesignature = '')
 	{
@@ -890,7 +890,6 @@ class BlockedLog
 		$this->date_creation = dol_now();
 
 		$this->object_version = ((float) DOL_VERSION);
-
 
 		$this->db->begin();
 
@@ -942,11 +941,11 @@ class BlockedLog
 		$sql .= ")";
 
 		/*
-		$a = serialize($this->object_data); $a2 = unserialize($a); $a4 = print_r($a2, true);
-		$b = json_encode($this->object_data); $b2 = json_decode($b); $b4 = print_r($b2, true);
-		var_dump($a4 == print_r($this->object_data, true) ? 'a=a' : 'a not = a');
-		var_dump($b4 == print_r($this->object_data, true) ? 'b=b' : 'b not = b');
-		exit;
+		* $a = serialize($this->object_data); $a2 = unserialize($a); $a4 = print_r($a2, true);
+		* $b = json_encode($this->object_data); $b2 = json_decode($b); $b4 = print_r($b2, true);
+		* var_dump($a4 == print_r($this->object_data, true) ? 'a=a' : 'a not = a');
+		* var_dump($b4 == print_r($this->object_data, true) ? 'b=b' : 'b not = b');
+		* exit;
 		*/
 
 		$res = $this->db->query($sql);
@@ -969,15 +968,15 @@ class BlockedLog
 			return -1;
 		}
 
-		// The commit will release the lock so we can insert nex record
+		// The commit will release the lock so we can insert next record
 	}
 
 	/**
-	 *	Check if current signature still correct compared to the value in chain
+	 *  Check if current signature still correct compared to the value in chain
 	 *
-	 *	@param	string			$previoushash		If previous signature hash is known, we can provide it to avoid to make a search of it in database.
-	 *  @param	int				$returnarray		1=Return array of details, 2=Return array of details including keyforsignature, 0=Boolean
-	 *	@return	boolean|array						True if OK, False if KO
+	 *  @param   string			$previoushash		If previous signature hash is known, we can provide it to avoid to make a search of it in database.
+	 *  @param   int			$returnarray		1=Return array of details, 2=Return array of details including keyforsignature, 0=Boolean
+	 *  @return  boolean|array						True if OK, False if KO
 	 */
 	public function checkSignature($previoushash = '', $returnarray = 0)
 	{
@@ -1011,11 +1010,11 @@ class BlockedLog
 	}
 
 	/**
-	 * Return a string for signature.
-	 * Note: rowid of line not included as it is not a business data and this allow to make backup of a year
-	 * and restore it into another database with different id wihtout comprimising checksums
+	 *  Return a string for signature.
+	 *  Note: rowid of line not included as it is not a business data and this allow to make backup of a year
+	 *  and restore it into another database with different id wihtout comprimising checksums
 	 *
-	 * @return string		Key for signature
+	 *  @return string		Key for signature
 	 */
 	private function buildKeyForSignature()
 	{
@@ -1029,11 +1028,11 @@ class BlockedLog
 
 
 	/**
-	 *	Get previous signature/hash in chain
+	 *  Get previous signature/hash in chain
 	 *
-	 *	@param int	$withlock		1=With a lock
-	 *	@param int	$beforeid		ID of a record
-	 *  @return	string				Hash of previous record (if beforeid is defined) or hash of last record (if beforeid is 0)
+	 *  @param   int	$withlock		1=With a lock
+	 *  @param   int	$beforeid		ID of a record
+	 *  @return  string					Hash of previous record (if beforeid is defined) or hash of last record (if beforeid is 0)
 	 */
 	public function getPreviousHash($withlock = 0, $beforeid = 0)
 	{
@@ -1187,10 +1186,10 @@ class BlockedLog
 
 
 	/**
-	 * Check if module was already used or not for at least one recording.
+	 *  Check if module was already used or not for at least one recording.
 	 *
-	 * @param   int     $ignoresystem       Ignore system events for the test
-	 * @return  bool
+	 *  @param   int     $ignoresystem       Ignore system events for the test
+	 *  @return  bool
 	 */
 	public function alreadyUsed($ignoresystem = 0)
 	{
