@@ -53,6 +53,7 @@ EVENTORGANIZATION_FILTERATTENDEES_TYPE = I formuläret för att skapa/lägga til
 #
 # Object
 #
+OrganizedEvent=Organized event
 EventOrganizationConfOrBooth= Konferens eller monter
 EventOrganizationConfOrBoothes=Konferens eller monter
 ManageOrganizeEvent = Hantera organisationen av ett evenemang
@@ -145,7 +146,7 @@ OrganizationEventLinkToThirdParty=Länk till tredjepart (kund, leverantör eller
 OrganizationEvenLabelName=Offentligt namn på konferensen eller montern
 
 NewSuggestionOfBooth=Ansökan om monter
-NewSuggestionOfConference=Ansökan om konferens
+NewSuggestionOfConference=Application to hold a conference
 
 #
 # Vote page
@@ -172,3 +173,5 @@ ErrorSeveralCompaniesWithEmailContactUs=Flera företag med denna e-postadress ha
 ErrorSeveralCompaniesWithNameContactUs=Flera företag med detta namn har hittats så vi kan inte validera din registrering automatiskt. Kontakta oss på %s för en manuell validering
 NoPublicActionsAllowedForThisEvent=Det finns inga åtgärder som är öppna för allmänheten för detta evenemang
 MaxNbOfAttendees=Max antal deltagare
+DateStartEvent=Eventets startdatum
+DateEndEvent=Eventets slutdatum

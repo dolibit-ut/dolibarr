@@ -26,6 +26,7 @@ Permission56002=Промяна на тикети
 Permission56003=Изтриване на тикети
 Permission56004=Управление на тикети
 Permission56005=Преглед на тикети от всички контрагенти (не е приложимо за външни потребители, винаги ще бъдат ограничени до контрагента от който зависят)
+Permission56006=Export tickets
 
 Tickets=Тикети
 TicketDictType=Тикет - Видове
@@ -61,10 +62,11 @@ TypeContact_ticket_external_CONTRIBUTOR=Сътрудник от страна н�
 OriginEmail=Reporter Email
 Notify_TICKET_SENTBYMAIL=Изпращане на тикет съобщението по имейл
 
+ExportDataset_ticket_1=Тикети
+
 # Status
 Read=Прочетен
 Assigned=Възложен
-InProgress=В изпълнение
 NeedMoreInformation=Waiting for reporter feedback
 NeedMoreInformationShort=Waiting for feedback
 Answered=Отговорен
@@ -100,6 +102,8 @@ TicketNewEmailBodyHelp=Текстът, посочен тук, ще бъде вк
 TicketParamPublicInterface=Настройка на публичен интерфейс
 TicketsEmailMustExist=Изисква съществуващ имейл адрес, за да се създаде тикет
 TicketsEmailMustExistHelp=За да се създаде нов тикет през публичния интерфейс имейл адресът трябва да съществува в базата данни
+TicketsShowProgression=Display the ticket progress in the public interface
+TicketsShowProgressionHelp=Enable this option to hide the progress of the ticket in the public interface pages
 TicketCreateThirdPartyWithContactIfNotExist=Ask name and company name for unknown emails.
 TicketCreateThirdPartyWithContactIfNotExistHelp=Check if a thirdparty or a contact exists for the email entered. If not, ask a name and a company name to create a third party with contact.
 PublicInterface=Публичен интерфейс
@@ -122,7 +126,9 @@ TicketParams=Параметри
 TicketsShowModuleLogo=Показване на логото на модула в публичния интерфейс
 TicketsShowModuleLogoHelp=Активирайте тази опция, за да скриете логото на модула от страниците на публичния интерфейс
 TicketsShowCompanyLogo=Показване на логото на фирмата в публичния интерфейс
-TicketsShowCompanyLogoHelp=Активирайте тази опция, за да скриете логото на основната фирма от страниците на публичния интерфейс
+TicketsShowCompanyLogoHelp=Enable this option to show the logo of the main company in the pages of the public interface
+TicketsShowCompanyFooter=Display the footer of the company in the public interface
+TicketsShowCompanyFooterHelp=Enable this option to show the footer of the main company in the pages of the public interface
 TicketsEmailAlsoSendToMainAddress=Also send a notification to the main email address
 TicketsEmailAlsoSendToMainAddressHelp=Enable this option to also send an email to the address defined into setup "%s" (see tab "%s")
 TicketsLimitViewAssignedOnly=Ограничаване на показването на тикети до такива, които са възложени на текущия потребител (не е приложимо за външни потребители, винаги ще бъдат ограничени до контрагента, от който зависят)
@@ -183,7 +189,7 @@ CreatedBy=Създаден от
 NewTicket=Нов тикет
 SubjectAnswerToTicket=Отговор на тикет
 TicketTypeRequest=Вид на тикета
-TicketCategory=Ticket categorization
+TicketCategory=Ticket group
 SeeTicket=Преглед на тикет
 TicketMarkedAsRead=Тикетът е маркиран като прочетен
 TicketReadOn=Прочетен на
@@ -195,7 +201,8 @@ TicketAssigned=Тикетът е възложен
 TicketChangeType=Променяне на вида
 TicketChangeCategory=Променяне на категория
 TicketChangeSeverity=Променяне на приоритет
-TicketAddMessage=Add private message
+TicketAddMessage=Add or send a message
+TicketAddPrivateMessage=Add a private message
 MessageSuccessfullyAdded=Тикетът е добавен
 TicketMessageSuccessfullyAdded=Съобщението е успешно добавено
 TicketMessagesList=Списък със съобщения
@@ -241,9 +248,14 @@ ConfirmReOpenTicket=Потвърдете повторното отваряне �
 TicketMessageMailIntroAutoNewPublicMessage=Ново съобщение беше добавено към тикет с тема: %s
 TicketAssignedToYou=Тикетът ви е възложен
 TicketAssignedEmailBody=Беше ви възложен тикет с проследяващ код %s от %s
+TicketAssignedCustomerEmail=Your ticket has been assigned for processing.
+TicketAssignedCustomerBody=This is an automatic email to confirm your ticket has been assigned for processing.
 MarkMessageAsPrivate=Маркиране на съобщението като лично
-TicketMessageSendEmailHelp=An email will be sent to all assigned contact (internal contacts, but also external contacts except if the option "%s" is checked)
-TicketMessagePrivateHelp=Това съобщение няма да се показва на външни потребители
+TicketMessageSendEmailHelp=An email will be sent to all assigned contact
+TicketMessageSendEmailHelp2a=(internal contacts, but also external contacts except if the option "%s" is checked)
+TicketMessageSendEmailHelp2b=(internal contacts, but also external contacts)
+TicketMessagePrivateHelp=This message will not be visible to external users
+TicketMessageRecipientsHelp=Recipient field completed with active contacts linked to the ticket
 TicketEmailOriginIssuer=Контакт на контрагента проследяващ тикета
 InitialMessage=Първоначално съобщение
 LinkToAContract=Връзка към договор
@@ -266,6 +278,7 @@ TicketsDelayForFirstResponseTooLong=Too much time elapsed since ticket opening w
 TicketsDelayFromLastResponseTooLong=Too much time elapsed since last answer on this ticket.
 TicketNoContractFoundToLink=No contract was found to be automatically linked to this ticket. Please link a contract manually.
 TicketManyContractsLinked=Many contracts have been automatically linked to this ticket. Make sure to verify which should be chosen.
+TicketRefAlreadyUsed=The reference [%s] is already used, your new reference is [%s]
 
 #
 # Logs
@@ -316,6 +329,9 @@ OldUser=Бивш потребител
 NewUser=Нов потребител
 NumberOfTicketsByMonth=Брой тикети на месец
 NbOfTickets=Брой тикети
+ExternalContributors=External contributors
+AddContributor=Add external contributor
+
 # notifications
 TicketCloseEmailSubjectCustomer=Ticket closed
 TicketCloseEmailBodyCustomer=This is an automatic message to notify you that ticket %s has just been closed.

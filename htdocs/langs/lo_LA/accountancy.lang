@@ -14,8 +14,8 @@ ACCOUNTING_EXPORT_ENDLINE=ເລືອກປະເພດການຂົນສົ
 ACCOUNTING_EXPORT_PREFIX_SPEC=Specify the prefix for the file name
 ThisService=ການບໍລິການນີ້
 ThisProduct=ຜະລິດຕະພັນນີ້
-DefaultForService=ຄ່າເລີ່ມຕົ້ນ ສຳ ລັບການບໍລິການ
-DefaultForProduct=ຄ່າເລີ່ມຕົ້ນ ສຳ ລັບຜະລິດຕະພັນ
+DefaultForService=Default for services
+DefaultForProduct=Default for products
 ProductForThisThirdparty=ຜະລິດຕະພັນສໍາລັບພາກສ່ວນທີສາມນີ້
 ServiceForThisThirdparty=ບໍລິການ ສຳ ລັບພາກສ່ວນທີສາມນີ້
 CantSuggest=ບໍ່ສາມາດແນະ ນຳ ໄດ້
@@ -41,6 +41,7 @@ AlreadyInGeneralLedger=Already transferred to accounting journals and ledger
 NotYetInGeneralLedger=Not yet transferred to accouting journals and ledger
 GroupIsEmptyCheckSetup=ກຸ່ມແມ່ນຫວ່າງເປົ່າ, ກວດເບິ່ງການຕັ້ງຂອງກຸ່ມບັນຊີທີ່ເປັນສ່ວນຕົວ
 DetailByAccount=ສະແດງລາຍລະອຽດຕາມບັນຊີ
+DetailBy=Detail by
 AccountWithNonZeroValues=ບັນຊີທີ່ມີຄ່າບໍ່ແມ່ນສູນ
 ListOfAccounts=ລາຍຊື່ບັນຊີ
 CountriesInEEC=ປະເທດໃນ EEC
@@ -51,14 +52,19 @@ AccountantFiles=ສົ່ງອອກເອກະສານແຫຼ່ງທີ�
 ExportAccountingSourceDocHelp=With this tool, you can search and export the source events that are used to generate your accountancy. <br>The exported ZIP file will contain the lists of requested items in CSV, as well as their attached files in their original format (PDF, ODT, DOCX...).
 ExportAccountingSourceDocHelp2=ເພື່ອສົ່ງອອກວາລະສານຂອງເຈົ້າ, ໃຊ້ລາຍການເມນູ %s - %s.
 ExportAccountingProjectHelp=Specify a project if you need an accounting report only for a specific project. Expense reports and loan payments are not included in project reports.
+ExportAccountancy=Export accountancy
+WarningDataDisappearsWhenDataIsExported=Warning, this list contains only the accounting entries that have not been already exported (Export date is empty). If you want to include the accounting entries already exported to re-export them, click on the button above.
 VueByAccountAccounting=ເບິ່ງຕາມບັນຊີບັນຊີ
 VueBySubAccountAccounting=ເບິ່ງຕາມບັນຊີຍ່ອຍບັນຊີ
 
-MainAccountForCustomersNotDefined=ບັນຊີບັນຊີຫຼັກສໍາລັບລູກຄ້າບໍ່ໄດ້ກໍານົດໄວ້ໃນການຕັ້ງ
-MainAccountForSuppliersNotDefined=ບັນຊີບັນຊີຫຼັກສໍາລັບຜູ້ຂາຍບໍ່ໄດ້ກໍານົດໄວ້ໃນການຕັ້ງ
-MainAccountForUsersNotDefined=ບັນຊີບັນຊີຫຼັກສໍາລັບຜູ້ໃຊ້ບໍ່ໄດ້ກໍານົດໄວ້ໃນການຕັ້ງ
-MainAccountForVatPaymentNotDefined=ບັນຊີບັນຊີຫຼັກສໍາລັບການຊໍາລະອາກອນມູນຄ່າເພີ່ມທີ່ບໍ່ໄດ້ກໍານົດໄວ້ໃນການຕັ້ງ
-MainAccountForSubscriptionPaymentNotDefined=ບັນຊີບັນຊີຫຼັກສໍາລັບການຊໍາລະການສະnotັກໃຊ້ບໍ່ໄດ້ກໍານົດໄວ້ໃນການຕັ້ງ
+MainAccountForCustomersNotDefined=Main account (from the Chart of Account) for customers not defined in setup
+MainAccountForSuppliersNotDefined=Main account (from the Chart of Account) for vendors not defined in setup
+MainAccountForUsersNotDefined=Main account (from the Chart of Account) for users not defined in setup
+MainAccountForRevenueStampSaleNotDefined=Account (from the Chart of Account) for the revenue stamp (sales) not defined in setup
+MainAccountForRevenueStampPurchaseNotDefined=Account (from the Chart of Account) for the revenue stamp (purchases) not defined in setup
+MainAccountForVatPaymentNotDefined=Account (from the Chart of Account) for VAT payment not defined in setup
+MainAccountForSubscriptionPaymentNotDefined=Account (from the Chart of Account) for membership payment not defined in setup
+MainAccountForRetainedWarrantyNotDefined=Account (from the Chart of Account) for the retained warranty not defined in setup
 UserAccountNotDefined=Accounting account for user not defined in setup
 
 AccountancyArea=ພື້ນທີ່ການບັນຊີ
@@ -101,7 +107,8 @@ ShowAccountingAccount=ສະແດງບັນຊີບັນຊີ
 ShowAccountingJournal=ສະແດງວາລະສານບັນຊີ
 ShowAccountingAccountInLedger=ສະແດງບັນຊີການບັນຊີຢູ່ໃນບັນຊີແຍກປະເພດ
 ShowAccountingAccountInJournals=ສະແດງບັນຊີບັນຊີຢູ່ໃນວາລະສານ
-AccountAccountingSuggest=ບັນຊີບັນຊີແນະນໍາ
+DataUsedToSuggestAccount=Data used to suggest account
+AccountAccountingSuggest=Account suggested
 MenuDefaultAccounts=ບັນຊີເລີ່ມຕົ້ນ
 MenuBankAccounts=ບັນຊີທະນາຄານ
 MenuVatAccounts=ບັນຊີອາກອນ
@@ -111,6 +118,7 @@ MenuLoanAccounts=ບັນຊີເງິນກູ້
 MenuProductsAccounts=ບັນຊີຜະລິດຕະພັນ
 MenuClosureAccounts=ປິດບັນຊີ
 MenuAccountancyClosure=ປິດ
+MenuExportAccountancy=Export accountancy
 MenuAccountancyValidationMovements=ກວດສອບການເຄື່ອນໄຫວ
 ProductsBinding=ບັນຊີຜະລິດຕະພັນ
 TransferInAccounting=ໂອນເຂົ້າບັນຊີ
@@ -126,6 +134,7 @@ WriteBookKeeping=Record transactions in accounting
 Bookkeeping=ປື້ມບັນຊີ
 BookkeepingSubAccount=Subledger
 AccountBalance=ຍອດເງິນໃນບັນຊີ
+AccountBalanceSubAccount=Sub-accounts balance
 ObjectsRef=ແຫຼ່ງຂໍ້ມູນອ້າງອີງ
 CAHTF=ຜູ້ຂາຍທັງpurchaseົດທີ່ຊື້ກ່ອນອາກອນ
 TotalExpenseReport=ລາຍງານລາຍຈ່າຍທັງົດ
@@ -165,9 +174,9 @@ ACCOUNTANCY_COMBO_FOR_AUX=ເປີດໃຊ້ບັນຊີລາຍຊື່
 ACCOUNTING_DATE_START_BINDING=ກຳ ນົດວັນທີເພື່ອເລີ່ມຜູກມັດແລະໂອນເຂົ້າບັນຊີ. ຕ່ ຳ ກວ່າວັນທີນີ້, ທຸລະ ກຳ ຈະບໍ່ຖືກໂອນເຂົ້າບັນຊີ.
 ACCOUNTING_DEFAULT_PERIOD_ON_TRANSFER=On accountancy transfer, what is the period selected by default
 
-ACCOUNTING_SELL_JOURNAL=Sales journal (sales and returns)
-ACCOUNTING_PURCHASE_JOURNAL=Purchase journal (purchase and returns)
-ACCOUNTING_BANK_JOURNAL=Cash journal (receipts and disbursements)
+ACCOUNTING_SELL_JOURNAL=Sales journal - sales and returns
+ACCOUNTING_PURCHASE_JOURNAL=Purchase journal - purchase and returns
+ACCOUNTING_BANK_JOURNAL=Cash journal - receipts and disbursements
 ACCOUNTING_EXPENSEREPORT_JOURNAL=Expense report journal
 ACCOUNTING_MISCELLANEOUS_JOURNAL=General journal
 ACCOUNTING_HAS_NEW_JOURNAL=ມີວາລະສານໃ່
@@ -189,6 +198,7 @@ ACCOUNTING_ACCOUNT_CUSTOMER_DEPOSIT=Account (from the Chart Of Account) to be us
 UseAuxiliaryAccountOnCustomerDeposit=Store customer account as individual account in subsidiary ledger for lines of down payments (if disabled, individual account for down payment lines will remain empty)
 ACCOUNTING_ACCOUNT_SUPPLIER_DEPOSIT=Account (from the Chart Of Account) to be used as the default
 UseAuxiliaryAccountOnSupplierDeposit=Store supplier account as individual account in subsidiary ledger for lines of down payments (if disabled, individual account for down payment lines will remain empty)
+ACCOUNTING_ACCOUNT_CUSTOMER_RETAINED_WARRANTY=Accounting account by default to register customer retained warranty
 
 ACCOUNTING_PRODUCT_BUY_ACCOUNT=Account (from the Chart Of Account) to be used as the default account for the products purchased within same country (used if not defined in the product sheet)
 ACCOUNTING_PRODUCT_BUY_INTRA_ACCOUNT=Account (from the Chart Of Account) to be used as the default account for the products purchased from EEC to another EEC country (used if not defined in the product sheet)
@@ -218,6 +228,7 @@ JournalLabel=ປ້າຍວາລະສານ
 NumPiece=ຈໍານວນສິ້ນ
 TransactionNumShort=ຕົວເລກ. ທຸລະກໍາ
 AccountingCategory=Custom group of accounts
+AccountingCategories=Custom groups of accounts
 GroupByAccountAccounting=ຈັດກຸ່ມຕາມບັນຊີແຍກປະເພດທົ່ວໄປ
 GroupBySubAccountAccounting=ຈັດກຸ່ມຕາມບັນຊີ subledger
 AccountingAccountGroupsDesc=ເຈົ້າສາມາດ ກຳ ນົດທີ່ນີ້ບາງກຸ່ມບັນຊີບັນຊີ. ພວກມັນຈະຖືກນໍາໃຊ້ສໍາລັບບົດລາຍງານການບັນຊີສ່ວນບຸກຄົນ.
@@ -234,6 +245,7 @@ ConfirmDeleteMvt=This will delete all lines in accountancy for the year/month an
 ConfirmDeleteMvtPartial=This will delete the transaction from the accounting (all lines related to the same transaction will be deleted)
 FinanceJournal=Finance journal
 ExpenseReportsJournal=ວາລະສານລາຍງານລາຍຈ່າຍ
+InventoryJournal=Inventory journal
 DescFinanceJournal=Finance journal including all the types of payments by bank account
 DescJournalOnlyBindedVisible=ນີ້ແມ່ນທັດສະນະຂອງການບັນທຶກທີ່ຖືກຜູກມັດກັບບັນຊີບັນຊີແລະສາມາດຖືກບັນທຶກລົງໃນປຶ້ມບັນຊີແລະປຶ້ມບັນຊີ.
 VATAccountNotDefined=ບັນຊີ ສຳ ລັບອາກອນມູນຄ່າເພີ່ມບໍ່ໄດ້ລະບຸ
@@ -265,6 +277,7 @@ ShowSubtotalByGroup=ສະແດງຜົນຮວມຍ່ອຍຕາມລະ
 
 Pcgtype=ກຸ່ມບັນຊີ
 PcgtypeDesc=ກຸ່ມບັນຊີໄດ້ຖືກນໍາໃຊ້ເປັນເກນທີ່ໄດ້ກໍານົດໄວ້ລ່ວງ ໜ້າ 'ຕົວກັ່ນຕອງ' ແລະ 'ການຈັດກຸ່ມ' ສໍາລັບບົດລາຍງານການບັນຊີບາງອັນ. ຕົວຢ່າງ, 'ລາຍຮັບ' ຫຼື 'ລາຍຈ່າຍ' ຖືກໃຊ້ເປັນກຸ່ມສໍາລັບບັນຊີບັນຊີຂອງຜະລິດຕະພັນເພື່ອສ້າງລາຍງານລາຍຈ່າຍ/ລາຍຮັບ.
+AccountingCategoriesDesc=Custom group of accounts can be used to group accounting accounts into one name to ease filter use or building of custom reports.
 
 Reconcilable=ເຂົ້າກັນໄດ້
 
@@ -289,11 +302,12 @@ DescClosure=Consult here the number of movements by month not yet validated & lo
 OverviewOfMovementsNotValidated=Overview of movements not validated and locked
 AllMovementsWereRecordedAsValidated=All movements were recorded as validated and locked
 NotAllMovementsCouldBeRecordedAsValidated=Not all movements could be recorded as validated and locked
-ValidateMovements=Validate and lock movements...
+ValidateMovements=Validate and lock movements
 DescValidateMovements=ການດັດແກ້ຫຼືການລຶບລາຍລັກອັກສອນ, ຕົວອັກສອນແລະການລຶບໃດ will ຈະຖືກຫ້າມ. ລາຍການທັງforົດ ສຳ ລັບການອອກ ກຳ ລັງກາຍຕ້ອງຖືກກວດສອບຖ້າບໍ່ດັ່ງນັ້ນຈະປິດບໍ່ໄດ້
 
 ValidateHistory=ຜູກມັດອັດຕະໂນມັດ
 AutomaticBindingDone=Automatic bindings done (%s) - Automatic binding not possible for some record (%s)
+DoManualBindingForFailedRecord=You have to do a manual link for the %s row(s) not linked automatically.
 
 ErrorAccountancyCodeIsAlreadyUse=Error, you cannot remove or disable this account of chart of account because it is used
 MvtNotCorrectlyBalanced=Movement not correctly balanced. Debit = %s & Credit = %s
@@ -337,11 +351,19 @@ ACCOUNTING_DISABLE_BINDING_ON_SALES=ປິດໃຊ້ງານການຜູ�
 ACCOUNTING_DISABLE_BINDING_ON_PURCHASES=ປິດໃຊ້ງານການຜູກມັດແລະການໂອນບັນຊີຢູ່ໃນການຊື້ (ໃບເກັບເງິນຂອງຜູ້ຂາຍຈະບໍ່ຖືກເອົາເຂົ້າໃນບັນຊີ)
 ACCOUNTING_DISABLE_BINDING_ON_EXPENSEREPORTS=ປິດໃຊ້ງານການຜູກມັດແລະການໂອນບັນຊີຢູ່ໃນລາຍງານລາຍຈ່າຍ (ບົດລາຍງານຄ່າໃຊ້ຈ່າຍຈະບໍ່ຖືກເອົາເຂົ້າໃນບັນຊີ)
 ACCOUNTING_ENABLE_LETTERING=Enable the lettering function in the accounting
+ACCOUNTING_ENABLE_LETTERING_DESC=When this options is enabled, you can define, on each accounting entry, a code so you can group different accounting movements together. In the past, when different journals was managed independently, this feature was necessary to group movement lines of different journals together. However, with Dolibarr accountancy, such a tracking code, called "<b>%s</b>" is already saved automatically, so an automatic lettering is already done, with no risk of error so this feature has become useless for a common usage. Manual lettering feature is provided for end users that really don't trust the computer engine making the transfer of data in accountancy.
+EnablingThisFeatureIsNotNecessary=Enabling this feature is no more necessary for a rigourous accounting management.
+ACCOUNTING_ENABLE_AUTOLETTERING=Enable the automatic lettering when transferring to accounting
+ACCOUNTING_ENABLE_AUTOLETTERING_DESC=The code for the lettering is automatically generated and incremented and not choosed by the end user
+OptionsAdvanced=Advanced options
+ACCOUNTING_FORCE_ENABLE_VAT_REVERSE_CHARGE=Activate the management of VAT reverse charge on supplier purchases
+ACCOUNTING_FORCE_ENABLE_VAT_REVERSE_CHARGE_DESC=When this option is enabled, you can define that a supplier or a given vendor invoice must be transfered into accountancy differently: A additionnal debit and a credit line will generated into the accounting on 2 given accounts from the chart of account defined into the "%s" setup page.
 
 ## Export
 NotExportLettering=Do not export the lettering when generating the file
-NotifiedExportDate=Flag exported lines as Exported <span class="warning">(to modify a line, you will need to delete the whole transaction and re-transfert it into accounting)</span>
-NotifiedValidationDate=Validate and Lock the exported entries <span class="warning">(same effect than the "%s" feature, modification and deletion of the lines will DEFINITELY not be possible)</span>
+NotifiedExportDate=Flag not yet exported lines as Exported <span class="warning">(to modify a line flagged as exported, you will need to delete the whole transaction and re-transfert it into accounting)</span>
+NotifiedValidationDate=Validate and Lock the exported entries not yet already locked <span class="warning">(same effect than the "%s" feature, modification and deletion of the lines will DEFINITELY not be possible)</span>
+NotifiedExportFull=Export documents ?
 DateValidationAndLock=Date validation and lock
 ConfirmExportFile=ການຢືນຢັນການສ້າງເອກະສານການສົ່ງອອກບັນຊີບໍ?
 ExportDraftJournal=ສົ່ງອອກວາລະສານຮ່າງ
@@ -372,7 +394,7 @@ ChartofaccountsId=ແຜນວາດບັນຊີ Id
 ## Tools - Init accounting account on product / service
 InitAccountancy=ການບັນຊີເບື້ອງຕົ້ນ
 InitAccountancyDesc=ໜ້າ ນີ້ສາມາດຖືກນໍາໃຊ້ເພື່ອເລີ່ມຕົ້ນບັນຊີບັນຊີກ່ຽວກັບຜະລິດຕະພັນແລະການບໍລິການທີ່ບໍ່ມີບັນຊີບັນຊີກໍານົດໄວ້ສໍາລັບການຂາຍແລະການຊື້.
-DefaultBindingDesc=ໜ້າ ນີ້ສາມາດຖືກໃຊ້ເພື່ອຕັ້ງບັນຊີເລີ່ມຕົ້ນເພື່ອໃຊ້ເຊື່ອມຕໍ່ບັນທຶກການເຮັດທຸລະກໍາກ່ຽວກັບເງິນເດືອນການຊໍາລະ, ການບໍລິຈາກ, ພາສີແລະອາກອນມູນຄ່າເພີ່ມເມື່ອບໍ່ໄດ້ກໍານົດບັນຊີບັນຊີສະເພາະ.
+DefaultBindingDesc=This page can be used to set the default accounts (from the chart of account) to use to link business objects with an account, like payment salaries, donation, taxes and VAT, when no specific account were already set.
 DefaultClosureDesc=ໜ້າ ນີ້ສາມາດຖືກນໍາໃຊ້ເພື່ອກໍານົດຕົວກໍານົດການນໍາໃຊ້ສໍາລັບການປິດບັນຊີ.
 Options=ທາງເລືອກ
 OptionModeProductSell=ການຂາຍຮູບແບບ
@@ -398,7 +420,7 @@ SaleLocal=ການຂາຍໃນທ້ອງຖິ່ນ
 SaleExport=ຂາຍສົ່ງອອກ
 SaleEEC=ຂາຍໃນ EEC
 SaleEECWithVAT=ການຂາຍໃນ EEC ດ້ວຍອາກອນມູນຄ່າເພີ່ມບໍ່ແມ່ນ null, ດັ່ງນັ້ນພວກເຮົາຄິດວ່າອັນນີ້ບໍ່ແມ່ນການຂາຍພາຍໃນລະບົບສື່ສານແລະບັນຊີທີ່ແນະນໍາແມ່ນບັນຊີຜະລິດຕະພັນມາດຕະຖານ.
-SaleEECWithoutVATNumber=ຂາຍໃນ EEC ໂດຍບໍ່ມີ VAT ແຕ່ ID VAT ຂອງພາກສ່ວນທີສາມບໍ່ໄດ້ລະບຸ. ພວກເຮົາຕົກຢູ່ໃນບັນຊີຜະລິດຕະພັນສໍາລັບການຂາຍມາດຕະຖານ. ເຈົ້າສາມາດແກ້ໄຂ VAT ID ຂອງພາກສ່ວນທີສາມຫຼືບັນຊີຜະລິດຕະພັນຖ້າຈໍາເປັນ.
+SaleEECWithoutVATNumber=Sale in EEC with no VAT but the VAT ID of thirdparty is not defined. We fall back on the account for standard sales. You can fix the VAT ID of the thirdparty, or change the product account suggested for binding if needed.
 ForbiddenTransactionAlreadyExported=Forbidden: The transaction has been validated and/or exported.
 ForbiddenTransactionAlreadyValidated=Forbidden: The transaction has been validated.
 ## Dictionary
@@ -424,7 +446,7 @@ ConfirmMassUnletteringAuto=Bulk auto unreconcile confirmation
 ConfirmMassUnletteringManual=Bulk manual unreconcile confirmation
 ConfirmMassUnletteringQuestion=Are you sure you want to unreconcile the %s selected record(s)?
 ConfirmMassDeleteBookkeepingWriting=Bulk Delete confirmation
-ConfirmMassDeleteBookkeepingWritingQuestion=This will delete the transaction from the accounting (all lines related to the same transaction will be deleted) Are you sure you want to delete the %s selected record(s)?
+ConfirmMassDeleteBookkeepingWritingQuestion=This will delete the transaction from the accounting (all line entries related to the same transaction will be deleted). Are you sure you want to delete the %s selected entries?
 
 ## Error
 SomeMandatoryStepsOfSetupWereNotDone=ບາງຂັ້ນຕອນທີ່ບັງຄັບຂອງການຕິດຕັ້ງບໍ່ສໍາເລັດ, ກະລຸນາເຮັດໃຫ້ສໍາເລັດ
@@ -437,11 +459,12 @@ NoJournalDefined=ບໍ່ໄດ້ ກຳ ນົດວາລະສານ
 Binded=ເສັ້ນຖືກຜູກມັດ
 ToBind=ສາຍເພື່ອຜູກມັດ
 UseMenuToSetBindindManualy=ເສັ້ນບໍ່ຖືກຜູກມັດເທື່ອ, ໃຊ້ເມນູ <a href="%s"> %s </a> ເພື່ອເຮັດການຜູກມັດດ້ວຍຕົນເອງ
-SorryThisModuleIsNotCompatibleWithTheExperimentalFeatureOfSituationInvoices=Sorry this module is not compatible with the experimental feature of situation invoices
+SorryThisModuleIsNotCompatibleWithTheExperimentalFeatureOfSituationInvoices=Note: this module or page is not completely compatible with the experimental feature of situation invoices. Some data may be wrong.
 AccountancyErrorMismatchLetterCode=Mismatch in reconcile code
 AccountancyErrorMismatchBalanceAmount=The balance (%s) is not equal to 0
 AccountancyErrorLetteringBookkeeping=Errors have occurred concerning the transactions: %s
 ErrorAccountNumberAlreadyExists=The accounting number %s already exists
+ErrorArchiveAddFile=Can't put "%s" file in archive
 
 ## Import
 ImportAccountingEntries=ລາຍການບັນຊີ
@@ -466,7 +489,9 @@ FECFormatMulticurrencyAmount=ຈໍານວນເງິນສະກຸນເງ
 FECFormatMulticurrencyCode=ລະຫັດຫຼາຍສະກຸນເງິນ (Idevise)
 
 DateExport=ວັນທີສົ່ງອອກ
-WarningReportNotReliable=ຄຳ ເຕືອນ, ບົດລາຍງານນີ້ບໍ່ໄດ້ອີງໃສ່ປຶ້ມບັນຊີ, ສະນັ້ນບໍ່ມີການເຮັດທຸລະ ກຳ ທີ່ດັດແກ້ດ້ວຍຕົນເອງຢູ່ໃນປຶ້ມບັນຊີ. ຖ້າວາລະສານຂອງເຈົ້າໃis່ຫຼ້າສຸດ, ມຸມມອງການເຮັດບັນຊີແມ່ນຖືກຕ້ອງກວ່າ.
+WarningReportNotReliable=Warning, this report is not based on the Ledger, so does not contain transactions modified manually in the Ledger. If your journalization is up to date, the bookkeeping view is more accurate.
 ExpenseReportJournal=ວາລະສານລາຍງານລາຍຈ່າຍ
+DocsAlreadyExportedAreIncluded=Docs already exported are included
+ClickToShowAlreadyExportedLines=Click to show already exported lines
 
 NAccounts=%s ບັນຊີ

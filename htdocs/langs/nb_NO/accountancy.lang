@@ -14,8 +14,8 @@ ACCOUNTING_EXPORT_ENDLINE=Velg vognreturtypen
 ACCOUNTING_EXPORT_PREFIX_SPEC=Velg prefiks for filnavnet
 ThisService=Denne tjenesten
 ThisProduct=Denne varen
-DefaultForService=Standard for tjeneste
-DefaultForProduct=Standard for vare
+DefaultForService=Standard for tjenester
+DefaultForProduct=Standard for varer
 ProductForThisThirdparty=Vare for denne tredjeparten
 ServiceForThisThirdparty=Tjeneste for denne tredjeparten
 CantSuggest=Kan ikke foreslå
@@ -41,6 +41,7 @@ AlreadyInGeneralLedger=Allerede overført til regnskapsjournal og reskontro
 NotYetInGeneralLedger=Foreløpig ikke overført til regnskapsjournal og reskontro
 GroupIsEmptyCheckSetup=Gruppen er tom, sjekk oppsettet for den personlige regnskapsgruppen
 DetailByAccount=Vis detaljer etter konto
+DetailBy=Detalj av
 AccountWithNonZeroValues=Kontoer med ikke-nullverdier
 ListOfAccounts=Liste over kontoer
 CountriesInEEC=Land i EEC
@@ -51,14 +52,19 @@ AccountantFiles=Eksporter kildedokumenter
 ExportAccountingSourceDocHelp=Med dette verktøyet kan du søke og eksportere kildehendelsene som brukes til å generere regnskapet ditt. <br> Den eksporterte ZIP-filen vil inneholde listene over forespurte elementer i CSV, samt vedlagte filer i deres originale format (PDF, ODT, DOCX...).
 ExportAccountingSourceDocHelp2=For å eksportere journalene dine, bruk menyoppføringen %s - %s.
 ExportAccountingProjectHelp=Spesifiser et prosjekt hvis du trenger en regnskapsrapport kun for et spesifikt prosjekt. Utgiftsrapporter og lånebetalinger er ikke inkludert i prosjektrapporter.
+ExportAccountancy=Eksporter regnskap
+WarningDataDisappearsWhenDataIsExported=Advarsel, denne listen inneholder kun regnskapsposter som ikke allerede er eksportert (eksportdato er tom). Hvis du vil inkludere regnskapspostene som allerede er eksportert for å eksportere dem på nytt, klikk på knappen ovenfor.
 VueByAccountAccounting=Vis etter regnskapskonto
 VueBySubAccountAccounting=Vis etter regnskaps-subkonto
 
-MainAccountForCustomersNotDefined=Hoved regnskapskonto for kunder som ikke er definert i oppsettet
-MainAccountForSuppliersNotDefined=Hovedregnskapskonto for leverandører som ikke er definert i oppsettet
-MainAccountForUsersNotDefined=Hoved regnskapskonto for brukere som ikke er definert i oppsettet
-MainAccountForVatPaymentNotDefined=Hoved regnskapskonto for MVA-betaling ikke definert i oppsettet
-MainAccountForSubscriptionPaymentNotDefined=Hovedregnskapskonto for abonnementsbetaling ikke definert i oppsettet
+MainAccountForCustomersNotDefined=Hovedkonto (fra Kontoplan) for kunder som ikke er definert i oppsett
+MainAccountForSuppliersNotDefined=Hovedkonto (fra kontoplanen) for leverandører som ikke er definert i oppsett
+MainAccountForUsersNotDefined=Hovedkonto (fra kontoplanen) for brukere som ikke er definert i oppsett
+MainAccountForRevenueStampSaleNotDefined=Account (from the Chart of Account) for the revenue stamp (sales) not defined in setup
+MainAccountForRevenueStampPurchaseNotDefined=Account (from the Chart of Account) for the revenue stamp (purchases) not defined in setup
+MainAccountForVatPaymentNotDefined=Account (from the Chart of Account) for VAT payment not defined in setup
+MainAccountForSubscriptionPaymentNotDefined=Account (from the Chart of Account) for membership payment not defined in setup
+MainAccountForRetainedWarrantyNotDefined=Account (from the Chart of Account) for the retained warranty not defined in setup
 UserAccountNotDefined=Regnskapskonto for bruker ikke definert i oppsett
 
 AccountancyArea=Regnskapsområde
@@ -101,7 +107,8 @@ ShowAccountingAccount=Vis regnskapskonto
 ShowAccountingJournal=Vis regnskapsjournal
 ShowAccountingAccountInLedger=Vis regnskapskonto i hovedbok
 ShowAccountingAccountInJournals=Vis regnskapskonto i journaler
-AccountAccountingSuggest=Foreslått regnskapskonto
+DataUsedToSuggestAccount=Data brukt til å foreslå konto
+AccountAccountingSuggest=Foreslått konto 
 MenuDefaultAccounts=Standard kontoer
 MenuBankAccounts=Bankkonti
 MenuVatAccounts=MVA-kontoer
@@ -111,6 +118,7 @@ MenuLoanAccounts=Lånekontoer
 MenuProductsAccounts=Varekontoer
 MenuClosureAccounts=Lukkingskontoer
 MenuAccountancyClosure=Nedleggelse
+MenuExportAccountancy=Eksporter regnskap
 MenuAccountancyValidationMovements=Valider bevegelser
 ProductsBinding=Varekontoer
 TransferInAccounting=Overføring i regnskap
@@ -126,6 +134,7 @@ WriteBookKeeping=Registrere transaksjoner i regnskapet
 Bookkeeping=Hovedbok
 BookkeepingSubAccount=Sub-Hovedbok
 AccountBalance=Kontobalanse
+AccountBalanceSubAccount=Underkonto-saldo
 ObjectsRef=Kildeobjekt ref
 CAHTF=Samlet leverandørkjøp før skatt
 TotalExpenseReport=Total utgiftsrapport
@@ -165,9 +174,9 @@ ACCOUNTANCY_COMBO_FOR_AUX=Aktiver kombinasjonsliste for underordnet konto (kan v
 ACCOUNTING_DATE_START_BINDING=Definer en dato for å starte binding og overføring i regnskap. Etter denne datoen vil ikke transaksjonene bli overført til regnskap.
 ACCOUNTING_DEFAULT_PERIOD_ON_TRANSFER=Ved regnskapsoverføring, hvilken periode er valgt som standard
 
-ACCOUNTING_SELL_JOURNAL=Salgsjournal (salg og retur)
-ACCOUNTING_PURCHASE_JOURNAL=Kjøpsjournal (kjøp og retur)
-ACCOUNTING_BANK_JOURNAL=Kassejournal (kvitteringer og utbetalinger)
+ACCOUNTING_SELL_JOURNAL=Salgsjournal - salg og returer
+ACCOUNTING_PURCHASE_JOURNAL=Kjøpsjournal – kjøp og retur
+ACCOUNTING_BANK_JOURNAL=Kassejournal - inn- og utbetalinger
 ACCOUNTING_EXPENSEREPORT_JOURNAL=Utgiftsjournal
 ACCOUNTING_MISCELLANEOUS_JOURNAL=Generell journal
 ACCOUNTING_HAS_NEW_JOURNAL=Har ny journal
@@ -178,31 +187,32 @@ ACCOUNTING_RESULT_PROFIT=Resultatregnskapskonto (fortjeneste)
 ACCOUNTING_RESULT_LOSS=Resultatregnskapskonto (tap)
 ACCOUNTING_CLOSURE_DEFAULT_JOURNAL=Avslutningsjournal
 
-ACCOUNTING_ACCOUNT_TRANSFER_CASH=Account (from the Chart Of Account) to be used as the account for transitional bank transfers
+ACCOUNTING_ACCOUNT_TRANSFER_CASH=Konto (fra kontoplanen) som skal brukes som konto for overgangs-bankoverføringer
 TransitionalAccount=Overgangsbasert bankoverføringskonto
 
-ACCOUNTING_ACCOUNT_SUSPENSE=Account (from the Chart Of Account) to be used as the account for unallocated funds either received or paid i.e. funds in "wait[ing]"
-DONATION_ACCOUNTINGACCOUNT=Account (from the Chart Of Account) to be used to register donations (Donation module)
-ADHERENT_SUBSCRIPTION_ACCOUNTINGACCOUNT=Account (from the Chart Of Account) to be used to register memberships subscriptions (Membership module - if membership recorded without invoice)
+ACCOUNTING_ACCOUNT_SUSPENSE=Konto (fra kontoplanen) som skal brukes som konto for ikke-allokerte midler enten mottatt eller betalt, dvs. midler i "venter"
+DONATION_ACCOUNTINGACCOUNT=Konto (fra kontoplanen) som skal brukes til å registrere donasjoner (donasjonsmodul)
+ADHERENT_SUBSCRIPTION_ACCOUNTINGACCOUNT=Konto (fra kontoplanen) som skal brukes til å registrere medlemskapsabonnementer (Medlemsmodul - hvis medlemskap er registrert uten faktura)
 
-ACCOUNTING_ACCOUNT_CUSTOMER_DEPOSIT=Account (from the Chart Of Account) to be used as the default account to register customer deposit
+ACCOUNTING_ACCOUNT_CUSTOMER_DEPOSIT=Konto (fra kontoplanen) som skal brukes som standardkonto for å registrere kundeinnskudd
 UseAuxiliaryAccountOnCustomerDeposit=Lagre kundekonto som individuell konto i hovedbok for linjer med forskuddsbetalinger (hvis den er deaktivert, vil individuell konto for forskuddsbetalingslinjer forbli tom)
-ACCOUNTING_ACCOUNT_SUPPLIER_DEPOSIT=Account (from the Chart Of Account) to be used as the default
+ACCOUNTING_ACCOUNT_SUPPLIER_DEPOSIT=Konto (fra kontoplanen) som skal brukes som standard
 UseAuxiliaryAccountOnSupplierDeposit=Lagre leverandørkonto som individuell konto i hovedbok for linjer med forskuddsbetalinger (hvis den er deaktivert, vil individuell konto for forskuddslinjer forbli tom)
+ACCOUNTING_ACCOUNT_CUSTOMER_RETAINED_WARRANTY=Regnskapskonto som standard for å registrere garantibeløp
 
-ACCOUNTING_PRODUCT_BUY_ACCOUNT=Account (from the Chart Of Account) to be used as the default account for the products purchased within same country (used if not defined in the product sheet)
-ACCOUNTING_PRODUCT_BUY_INTRA_ACCOUNT=Account (from the Chart Of Account) to be used as the default account for the products purchased from EEC to another EEC country (used if not defined in the product sheet)
-ACCOUNTING_PRODUCT_BUY_EXPORT_ACCOUNT=Account (from the Chart Of Account) to be used as the default account for the products purchased and imported from any other foreign country (used if not defined in the product sheet)
-ACCOUNTING_PRODUCT_SOLD_ACCOUNT=Account (from the Chart Of Account) to be used as the default account for the sold products (used if not defined in the product sheet)
-ACCOUNTING_PRODUCT_SOLD_INTRA_ACCOUNT=Account (from the Chart Of Account) to be used as the default account for the products sold from EEC to another EEC country (used if not defined in the product sheet)
-ACCOUNTING_PRODUCT_SOLD_EXPORT_ACCOUNT=Account (from the Chart Of Account) to be used as the default account for the products sold and exported to any other foreign country (used if not defined in the product sheet)
+ACCOUNTING_PRODUCT_BUY_ACCOUNT=Konto (fra kontoplanen) som skal brukes som standardkonto for varer kjøpt i samme land (brukes hvis det ikke er definert i varearket)
+ACCOUNTING_PRODUCT_BUY_INTRA_ACCOUNT=Konto (fra kontoplanen) som skal brukes som standardkonto for varer kjøpt fra EEC til et annet EEC-land (brukes hvis det ikke er definert i varearket)
+ACCOUNTING_PRODUCT_BUY_EXPORT_ACCOUNT=Konto (fra kontoplanen) som skal brukes som standardkonto for varer som er kjøpt og importert fra andre land (brukes hvis det ikke er definert i produktarket)
+ACCOUNTING_PRODUCT_SOLD_ACCOUNT=Konto (fra kontoplanen) som skal brukes som standardkonto for de solgte produktene (brukes hvis det ikke er definert i varearket)
+ACCOUNTING_PRODUCT_SOLD_INTRA_ACCOUNT=Konto (fra kontoplanen) som skal brukes som standardkonto for varer som selges fra EEC til et annet EEC-land (brukes hvis det ikke er definert i varearket)
+ACCOUNTING_PRODUCT_SOLD_EXPORT_ACCOUNT=Konto (fra kontoplanen) som skal brukes som standardkonto for varer som selges og eksporteres til et hvilket som helst annet land (brukes hvis det ikke er definert i produktarket)
 
-ACCOUNTING_SERVICE_BUY_ACCOUNT=Account (from the Chart Of Account) to be used as the default account for the services purchased within same country (used if not defined in the service sheet)
-ACCOUNTING_SERVICE_BUY_INTRA_ACCOUNT=Account (from the Chart Of Account) to be used as the default account for the services purchased from EEC to another EEC country (used if not defined in the service sheet)
-ACCOUNTING_SERVICE_BUY_EXPORT_ACCOUNT=Account (from the Chart Of Account) to be used as the default account for the services purchased and imported from other foreign country (used if not defined in the service sheet)
-ACCOUNTING_SERVICE_SOLD_ACCOUNT=Account (from the Chart Of Account) to be used as the default account for the sold services (used if not defined in the service sheet)
-ACCOUNTING_SERVICE_SOLD_INTRA_ACCOUNT=Account (from the Chart Of Account) to be used as the default account for the services sold from EEC to another EEC country (used if not defined in the service sheet)
-ACCOUNTING_SERVICE_SOLD_EXPORT_ACCOUNT=Account (from the Chart Of Account) to be used as the default account for the services sold and exported to any other foreign country (used if not defined in the service sheet)
+ACCOUNTING_SERVICE_BUY_ACCOUNT=Konto (fra kontoplanen) som skal brukes som standardkonto for tjenester kjøpt i samme land (brukes hvis det ikke er definert i tjenestearket)
+ACCOUNTING_SERVICE_BUY_INTRA_ACCOUNT=Konto (fra kontoplanen) som skal brukes som standardkonto for tjenestene kjøpt fra EEC til et annet EEC-land (brukes hvis det ikke er definert i tjenestearket)
+ACCOUNTING_SERVICE_BUY_EXPORT_ACCOUNT=Konto (fra kontoplanen) som skal brukes som standardkonto for tjenestene kjøpt og importert fra andre land (brukes hvis det ikke er definert i tjenestearket)
+ACCOUNTING_SERVICE_SOLD_ACCOUNT=Konto (fra kontoplanen) som skal brukes som standardkonto for de solgte tjenestene (brukes hvis det ikke er definert i servicearket)
+ACCOUNTING_SERVICE_SOLD_INTRA_ACCOUNT=Konto (fra kontoplanen) som skal brukes som standardkonto for tjenestene som selges fra EEC til et annet EEC-land (brukes hvis det ikke er definert i tjenestearket)
+ACCOUNTING_SERVICE_SOLD_EXPORT_ACCOUNT=Konto (fra kontoplanen) som skal brukes som standardkonto for tjenestene som selges og eksporteres til et hvilket som helst annet land (brukes hvis det ikke er definert i tjenestearket)
 
 Doctype=Dokumenttype
 Docdate=Dato
@@ -217,7 +227,8 @@ Codejournal=Journal
 JournalLabel=Journaletikett
 NumPiece=Del nummer
 TransactionNumShort=Transaksjonsnummer
-AccountingCategory=Custom group of accounts
+AccountingCategory=Egendefinert gruppe med kontoer
+AccountingCategories=Egendefinerte grupper av kontoer
 GroupByAccountAccounting=Gruppere etter hovedbokskonto
 GroupBySubAccountAccounting=Gruppere etter sub-hovedbokskonto
 AccountingAccountGroupsDesc=Her kan du definere noen grupper regnskapskonti. De vil bli brukt til personlige regnskapsrapporter.
@@ -234,6 +245,7 @@ ConfirmDeleteMvt=Dette vil slette alle linjer i regnskap for året/måneden og/e
 ConfirmDeleteMvtPartial=Dette vil slette transaksjonen fra regnskapet (alle linjer knyttet til samme transaksjon vil bli slettet)
 FinanceJournal=Finansjournal
 ExpenseReportsJournal=Journal for utgiftsrapporter
+InventoryJournal=Lagertellingsjournal
 DescFinanceJournal=Finansjournal med alle typer betalinger etter bankkonto
 DescJournalOnlyBindedVisible=Dette er en oversikt over poster som er bundet til en regnskapskonto og kan registreres i journaler og hovedbok.
 VATAccountNotDefined=MVA-konto er ikke definert
@@ -265,19 +277,20 @@ ShowSubtotalByGroup=Vis subtotal etter nivå
 
 Pcgtype=Kontogruppe
 PcgtypeDesc=Kontogruppe brukes som forhåndsdefinerte 'filter' og 'gruppering' kriterier for noen regnskapsrapporter. For eksempel blir 'INNTEKT' eller 'UTGIFT' brukt som grupper for regnskapsføring av varer for å lage utgifts-/inntektsrapporten.
+AccountingCategoriesDesc=Egendefinert gruppe med kontoer kan brukes til å gruppere regnskapskontoer i ett navn for å lette filterbruk eller bygging av tilpassede rapporter.
 
 Reconcilable=Kan avstemmes
 
 TotalVente=Total omsetning før skatt
 TotalMarge=Total salgsmargin
 
-DescVentilCustomer=Consult here the list of customer invoice lines bound (or not) to a product account from chart of account
-DescVentilMore=In most cases, if you use predefined products or services and you set the account (from chart of account) on the product/service card, the application will be able to make all the binding between your invoice lines and the accounting account of your chart of accounts, just in one click with the button <strong>"%s"</strong>. If account was not set on product/service cards or if you still have some lines not bound to an account, you will have to make a manual binding from the menu "<strong>%s</strong>".
-DescVentilDoneCustomer=Consult here the list of the lines of invoices customers and their product account from chart of account
-DescVentilTodoCustomer=Bind invoice lines not already bound with a product account from chart of account
-ChangeAccount=Change the product/service account (from chart of account) for the selected lines with the following account:
+DescVentilCustomer=Liste over kundefakturalinjer bundet (eller ikke) til en produktkonto fra kontoplan
+DescVentilMore=I de fleste tilfeller, hvis du bruker forhåndsdefinerte produkter eller tjenester og du setter kontoen (fra kontoplan) på produkt-/tjenestekortet, vil applikasjonen kunne gjøre all bindingen mellom dine fakturalinjer og regnskapskontoen til dine kontoer, bare med ett klikk med knappen <strong> "%s" </strong> . Hvis konto ikke ble satt på vare-/tjenestekort eller hvis du fortsatt har noen linjer som ikke er bundet til en konto, må du gjøre en manuell binding fra menyen " <strong> %s </strong> ".
+DescVentilDoneCustomer=Liste over linjene med fakturakunder og deres produktkonto fra kontoplan
+DescVentilTodoCustomer=Bind fakturalinjer som ikke allerede er bundet til en varekonto fra kontoplan
+ChangeAccount=Endre vare-/tjenestekontoen (fra kontoplanen) for de valgte linjene med følgende konto:
 Vide=-
-DescVentilSupplier=Consult here the list of vendor invoice lines bound or not yet bound to a product account from chart of account (only record not already transfered in accountancy are visible)
+DescVentilSupplier=Liste over leverandørfakturalinjer som er bundet eller ennå ikke bundet til en produktkonto fra kontoplan (bare post som ikke allerede er overført i regnskap er synlig)
 DescVentilDoneSupplier=Liste over linjene med leverandørfakturaer og deres regnskapskonto
 DescVentilTodoExpenseReport=Bind utgiftsrapport-linjer til en gebyr-regnskapskonto
 DescVentilExpenseReport=Liste over utgiftsrapport-linjer bundet (eller ikke) til en gebyr-regnskapskonto
@@ -289,20 +302,21 @@ DescClosure=Her ser du antall bevegelser per måned som ennå ikke er validert o
 OverviewOfMovementsNotValidated=Oversikt over bevegelser som ikke er validert og låst
 AllMovementsWereRecordedAsValidated=Alle bevegelser ble registrert som validerte og låste
 NotAllMovementsCouldBeRecordedAsValidated=Ikke alle bevegelser kunne registreres som validerte og låste
-ValidateMovements=Valider og lås bevegelser...
+ValidateMovements=Validere og låse bevegelser
 DescValidateMovements=Enhver modifisering eller fjerning av skriving, bokstaver og sletting vil være forbudt. Alle påmeldinger for en oppgave må valideres, ellers er det ikke mulig å lukke
 
 ValidateHistory=Bind automatisk
 AutomaticBindingDone=Automatiske bindinger utført (%s) - Automatisk binding er ikke mulig for enkelte poster (%s)
+DoManualBindingForFailedRecord=Du må gjøre en manuell kobling for %s rad(er) som ikke kobles automatisk.
 
-ErrorAccountancyCodeIsAlreadyUse=Error, you cannot remove or disable this account of chart of account because it is used
+ErrorAccountancyCodeIsAlreadyUse=Feil, du kan ikke fjerne eller deaktivere denne kontoplanen fordi den er i bruk
 MvtNotCorrectlyBalanced=Bevegelsen er ikke riktig balansert. Debet = %s & kreditt = %s
 Balancing=Balansering
 FicheVentilation=Binding-kort
 GeneralLedgerIsWritten=Transaksjoner blir skrevet inn i hovedboken
 GeneralLedgerSomeRecordWasNotRecorded=Noen av transaksjonene kunne ikke journalføres. Hvis det ikke er noen annen feilmelding, er dette trolig fordi de allerede var journalført.
 NoNewRecordSaved=Ingen flere poster å overføre
-ListOfProductsWithoutAccountingAccount=List of products not bound to any account of chart of account
+ListOfProductsWithoutAccountingAccount=Liste over varer som ikke er bundet til noen konto eller kontoplan
 ChangeBinding=Endre bindingen
 Accounted=Regnskapsført i hovedbok
 NotYetAccounted=Foreløpig ikke overført til regnskap
@@ -337,11 +351,19 @@ ACCOUNTING_DISABLE_BINDING_ON_SALES=Deaktiver binding og overføring til regnska
 ACCOUNTING_DISABLE_BINDING_ON_PURCHASES=Deaktiver binding og overføring til regnskap ved kjøp (leverandørfakturaer blir ikke tatt med i regnskapet)
 ACCOUNTING_DISABLE_BINDING_ON_EXPENSEREPORTS=Deaktiver binding og overføring til regnskap på utgiftsrapporter (utgiftsrapporter blir ikke tatt med i regnskapet)
 ACCOUNTING_ENABLE_LETTERING=Aktiver bokstavfunksjonen i regnskapet
+ACCOUNTING_ENABLE_LETTERING_DESC=Når dette alternativet er aktivert, kan du definere, på hver regnskapspost, en kode slik at du kan gruppere ulike regnskapsbevegelser sammen. Tidligere, når forskjellige journaler ble administrert uavhengig, var denne funksjonen nødvendig for å gruppere bevegelseslinjer for forskjellige tidsskrifter sammen. Men med Dolibarr-regnskap, er en slik sporingskode, kalt " <b> %s </b> " allerede lagret automatisk, så en automatisk registrering er allerede utført, uten risiko for feil, så denne funksjonen har blitt ubrukelig for vanlig bruk. Manuell registreringsfunksjon er gitt for sluttbrukere som virkelig ikke stoler på datamotoren som overfører data i regnskap.
+EnablingThisFeatureIsNotNecessary=Å aktivere denne funksjonen er ikke lenger nødvendig for en streng regnskapsstyring.
+ACCOUNTING_ENABLE_AUTOLETTERING=Aktiver automatisk skriving ved overføring til regnskap
+ACCOUNTING_ENABLE_AUTOLETTERING_DESC=Koden for bokstaven genereres automatisk og økes og velges ikke av sluttbrukeren
+OptionsAdvanced=Avanserte alternativer
+ACCOUNTING_FORCE_ENABLE_VAT_REVERSE_CHARGE=Aktiver styring av omvendt avgiftsplikt på leverandørkjøp
+ACCOUNTING_FORCE_ENABLE_VAT_REVERSE_CHARGE_DESC=Når dette alternativet er aktivert, kan du definere at en leverandør eller en gitt leverandørfaktura må overføres til regnskapet annerledes: En ekstra debet og en kredittgrense vil genereres inn i regnskapet på 2 gitte kontoer fra kontoplanen som er definert i "%s " oppsettside.
 
 ## Export
 NotExportLettering=Ikke eksporter bokstaver når du genererer filen
-NotifiedExportDate=Flagg eksporterte linjer som eksportert <span class="warning"> (for å endre en linje, må du slette hele transaksjonen og overføre den til regnskapet på nytt) </span>
-NotifiedValidationDate=Valider og lås de eksporterte oppføringene <span class="warning"> (samme effekt som "%s"-funksjonen, modifikasjon og sletting av linjene vil DEFINITIVT ikke være mulig) </span>
+NotifiedExportDate=Flagg ennå ikke eksporterte linjer som eksportert <span class="warning"> (for å endre en linje flagget som eksportert, må du slette hele transaksjonen og overføre den til regnskapet på nytt) </span>
+NotifiedValidationDate=Valider og lås de eksporterte oppføringene som ennå ikke allerede er låst <span class="warning"> (samme effekt som funksjonen "%s", modifikasjon og sletting av linjene vil DEFINITIVT ikke være mulig) </span>
+NotifiedExportFull=Eksportere dokumenter?
 DateValidationAndLock=Datovalidering og lås
 ConfirmExportFile=Bekreftelse på generering av regnskapseksportfilen ?
 ExportDraftJournal=Eksporter utkastjournal
@@ -372,7 +394,7 @@ ChartofaccountsId=Kontoplan ID
 ## Tools - Init accounting account on product / service
 InitAccountancy=Initier regnskap
 InitAccountancyDesc=Denne siden kan brukes til å initialisere en regnskapskonto for produkter og tjenester som ikke har en regnskapskonto definert for salg og kjøp.
-DefaultBindingDesc=Denne siden kan brukes til å sette en standardkonto til bruk for å for å koble transaksjonsposter om lønnsutbetaling, donasjon, skatter og MVA når ingen bestemt regnskapskonto er satt.
+DefaultBindingDesc=Denne siden kan brukes til å angi standardkontoer (fra kontoplanen) som skal brukes til å knytte forretningsobjekter til en konto, som betaling av lønn, donasjon, skatter og MVA, når ingen spesifikk konto allerede var satt.
 DefaultClosureDesc=Denne siden kan brukes til å angi parametere som brukes for regnskapsavslutninger.
 Options=Innstillinger
 OptionModeProductSell=Salgsmodus
@@ -398,7 +420,7 @@ SaleLocal=Lokalt salg
 SaleExport=Eksportsalg
 SaleEEC=Salg i EU
 SaleEECWithVAT=Salg i EU med mva som ikke er null, så vi antar at dette IKKE er et intra-EU salg og den foreslåtte kontoen er standard produktkonto.
-SaleEECWithoutVATNumber=Salg i EU uten mva, men mva-ID for tredjepart er ikke definert. Vi faller tilbake på produktkontoen for standard salg. Du kan fikse mva-ID for tredjepart eller produktkonto om nødvendig.
+SaleEECWithoutVATNumber=Salg i EEC uten MVA, men MVA-ID-en til tredjepart er ikke definert. Vi faller tilbake på kontoen for standardsalg. Du kan fikse MVA-ID-en til tredjeparten, eller endre produktkontoen som foreslås for binding om nødvendig.
 ForbiddenTransactionAlreadyExported=Ikke tillatt: Transaksjonen er validert og/eller eksportert.
 ForbiddenTransactionAlreadyValidated=Ikke tillatt: Transaksjonen er validert.
 ## Dictionary
@@ -424,7 +446,7 @@ ConfirmMassUnletteringAuto=Bekreftelse på bulk tilbakestilling av automatisk av
 ConfirmMassUnletteringManual=Bekreftelse på bulk tilbakestilling av manuell avstemming
 ConfirmMassUnletteringQuestion=Er du sikker på at du vil tilbakestille avstemming av %s valgte post(er)?
 ConfirmMassDeleteBookkeepingWriting=Bekreft massesletting
-ConfirmMassDeleteBookkeepingWritingQuestion=Dette vil slette transaksjonen fra regnskapet (alle linjer knyttet til samme transaksjon vil bli slettet) Er du sikker på at du vil slette %s valgte post(er)?
+ConfirmMassDeleteBookkeepingWritingQuestion=Dette vil slette transaksjonen fra regnskapet (alle linjeposter knyttet til samme transaksjon vil bli slettet). Er du sikker på at du vil slette de %s valgte oppføringene?
 
 ## Error
 SomeMandatoryStepsOfSetupWereNotDone=Noen obligatoriske trinn for oppsett ble ikke gjort, vennligst fullfør disse
@@ -437,11 +459,12 @@ NoJournalDefined=Ingen journal definert
 Binded=Bundne linjer
 ToBind=Linjer som skal bindes
 UseMenuToSetBindindManualy=Linjer som ennå ikke er bundet, bruk menyen <a href="%s"> %s </a> for å gjøre bindingen manuelt
-SorryThisModuleIsNotCompatibleWithTheExperimentalFeatureOfSituationInvoices=Beklager, denne modulen er ikke kompatibel med den eksperimentelle funksjonen til situasjonsfakturaer
+SorryThisModuleIsNotCompatibleWithTheExperimentalFeatureOfSituationInvoices=Merk: denne modulen eller siden er ikke helt kompatibel med den eksperimentelle funksjonen til delfakturaer. Noen data kan være feil.
 AccountancyErrorMismatchLetterCode=Uoverensstemmelse i avstemmingskode
 AccountancyErrorMismatchBalanceAmount=Saldoen (%s) er ikke lik 0
 AccountancyErrorLetteringBookkeeping=Det har oppstått feil angående transaksjonene: %s
 ErrorAccountNumberAlreadyExists=Kontonummeret %s eksisterer allerede
+ErrorArchiveAddFile=Kan ikke legge "%s"-filen i arkivet
 
 ## Import
 ImportAccountingEntries=Regnskapsposter
@@ -466,7 +489,9 @@ FECFormatMulticurrencyAmount=Flervalutabeløp (Montantdevise)
 FECFormatMulticurrencyCode=Flervalutakode (Idevise)
 
 DateExport=Dato eksport
-WarningReportNotReliable=Advarsel, denne rapporten er ikke basert på hovedboken, så den inneholder ikke transaksjoner endret manuelt i hovedboken. Hvis journaliseringen din er oppdatert, er bokføringsvisningen mer nøyaktig.
+WarningReportNotReliable=Advarsel, denne rapporten er ikke basert på hovedboken, så den inneholder ikke transaksjoner som er endret manuelt i hovedboken. Hvis journaliseringen din er oppdatert, er bokføringsvisningen mer nøyaktig.
 ExpenseReportJournal=Utgiftsrapport-journal
+DocsAlreadyExportedAreIncluded=Dokumenter som allerede er eksportert er inkludert
+ClickToShowAlreadyExportedLines=Klikk for å vise allerede eksporterte linjer
 
 NAccounts=%s kontoer

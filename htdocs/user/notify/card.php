@@ -38,6 +38,10 @@ $langs->loadLangs(array('companies', 'mails', 'admin', 'other', 'errors'));
 $id = GETPOST("id", 'int');
 $ref = GETPOST('ref', 'alpha');
 
+if (!isset($id) || empty($id)) {
+	accessforbidden();
+}
+
 $action = GETPOST('action', 'aZ09');
 $actionid = GETPOST('actionid', 'int');
 
@@ -324,7 +328,7 @@ if ($result > 0) {
 		if ($num) {
 			$i = 0;
 
-			$userstatic = new user($db);
+			$userstatic = new User($db);
 
 			while ($i < $num) {
 				$obj = $db->fetch_object($resql);
@@ -335,7 +339,8 @@ if ($result > 0) {
 				$userstatic->email = $obj->email;
 				$userstatic->statut = $obj->status;
 
-				print '<tr class="oddeven"><td>'.$userstatic->getNomUrl(1);
+				print '<tr class="oddeven">';
+				print '<td>'.$userstatic->getNomUrl(1);
 				if ($obj->type == 'email') {
 					if (isValidEmail($obj->email)) {
 						print ' &lt;'.$obj->email.'&gt;';
@@ -362,8 +367,9 @@ if ($result > 0) {
 				$i++;
 			}
 			$db->free($resql);
+		} else {
+			print '<tr><td colspan="4"><span class="opacitymedium">'.$langs->trans("None").'</span></td></tr>';
 		}
-
 		// List of notifications enabled for fixed email
 		/*
 		foreach($conf->global as $key => $val) {
@@ -427,7 +433,7 @@ if ($result > 0) {
 
 	// Count total nb of records
 	$nbtotalofrecords = '';
-	if (empty($conf->global->MAIN_DISABLE_FULL_SCANLIST)) {
+	if (!getDolGlobalInt('MAIN_DISABLE_FULL_SCANLIST')) {
 		$result = $db->query($sql);
 		$nbtotalofrecords = $db->num_rows($result);
 		if (($page * $limit) > $nbtotalofrecords) {	// if total resultset is smaller then paging size (filtering), goto and load page 0

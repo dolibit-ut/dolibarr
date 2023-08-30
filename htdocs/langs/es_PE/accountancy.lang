@@ -1,5 +1,4 @@
 # Dolibarr language file - Source file is en_US - accountancy
-Accounting=Contabilizando
 ACCOUNTING_EXPORT_SEPARATORCSV=Separador de columna de archivo a exportar
 ACCOUNTING_EXPORT_DATE=Formato de fecha de archivo a exportar
 ACCOUNTING_EXPORT_PIECE=Exportar el número de pieza
@@ -9,8 +8,6 @@ ACCOUNTING_EXPORT_AMOUNT=Monto de exportación
 ACCOUNTING_EXPORT_DEVISE=Moneda de exportación
 ACCOUNTING_EXPORT_ENDLINE=Seleccionar el tipo de retorno de carro
 ACCOUNTING_EXPORT_PREFIX_SPEC=Especifique el prefijo del nombre del fichero
-DefaultForService=Servicio por defecto
-DefaultForProduct=Producto por defecto
 Journals=Revistas
 JournalFinancial=Revistas financieras
 BackToChartofaccounts=Retornar gráfico de cuentas
