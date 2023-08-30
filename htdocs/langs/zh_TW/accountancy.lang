@@ -14,8 +14,8 @@ ACCOUNTING_EXPORT_ENDLINE=選擇退回類型
 ACCOUNTING_EXPORT_PREFIX_SPEC=指定檔案名稱的前綴字元
 ThisService=此服務
 ThisProduct=此產品
-DefaultForService=服務的預設
-DefaultForProduct=產品的預設
+DefaultForService=Default for services
+DefaultForProduct=Default for products
 ProductForThisThirdparty=此合作方的產品
 ServiceForThisThirdparty=此合作方的服務
 CantSuggest=無法建議
@@ -41,6 +41,7 @@ AlreadyInGeneralLedger=已經轉移到會計日記帳和分類帳中
 NotYetInGeneralLedger=尚未轉移到結帳日記帳和分類帳中
 GroupIsEmptyCheckSetup=群組是空的，檢查個人化會計群組的設定
 DetailByAccount=依帳戶顯示細節
+DetailBy=Detail by
 AccountWithNonZeroValues=非零值的帳戶
 ListOfAccounts=帳戶清單
 CountriesInEEC=歐盟國家
@@ -51,14 +52,19 @@ AccountantFiles=匯出來源文件
 ExportAccountingSourceDocHelp=With this tool, you can search and export the source events that are used to generate your accountancy. <br>The exported ZIP file will contain the lists of requested items in CSV, as well as their attached files in their original format (PDF, ODT, DOCX...).
 ExportAccountingSourceDocHelp2=要匯出您的日記帳，請使用選單條目 %s - %s。
 ExportAccountingProjectHelp=Specify a project if you need an accounting report only for a specific project. Expense reports and loan payments are not included in project reports.
+ExportAccountancy=Export accountancy
+WarningDataDisappearsWhenDataIsExported=Warning, this list contains only the accounting entries that have not been already exported (Export date is empty). If you want to include the accounting entries already exported to re-export them, click on the button above.
 VueByAccountAccounting=依會計科目檢視
 VueBySubAccountAccounting=依會計子分類帳檢視
 
-MainAccountForCustomersNotDefined=在設定中客戶的主要會計帳戶尚未定義
-MainAccountForSuppliersNotDefined=在設定中供應商的主要會計帳戶尚未定義
-MainAccountForUsersNotDefined=在設定中使用者的主要會計帳戶尚未定義
-MainAccountForVatPaymentNotDefined=在設定中營業稅付款的主要會計帳戶尚未定義
-MainAccountForSubscriptionPaymentNotDefined=未在"設定"中定義訂閱付款的主會計帳戶
+MainAccountForCustomersNotDefined=Main account (from the Chart of Account) for customers not defined in setup
+MainAccountForSuppliersNotDefined=Main account (from the Chart of Account) for vendors not defined in setup
+MainAccountForUsersNotDefined=Main account (from the Chart of Account) for users not defined in setup
+MainAccountForRevenueStampSaleNotDefined=Account (from the Chart of Account) for the revenue stamp (sales) not defined in setup
+MainAccountForRevenueStampPurchaseNotDefined=Account (from the Chart of Account) for the revenue stamp (purchases) not defined in setup
+MainAccountForVatPaymentNotDefined=Account (from the Chart of Account) for VAT payment not defined in setup
+MainAccountForSubscriptionPaymentNotDefined=Account (from the Chart of Account) for membership payment not defined in setup
+MainAccountForRetainedWarrantyNotDefined=Account (from the Chart of Account) for the retained warranty not defined in setup
 UserAccountNotDefined=Accounting account for user not defined in setup
 
 AccountancyArea=會計區域
@@ -101,7 +107,8 @@ ShowAccountingAccount=顯示會計項目
 ShowAccountingJournal=顯示會計日記帳
 ShowAccountingAccountInLedger=在分類帳中顯示會計科目
 ShowAccountingAccountInJournals=在日記帳中顯示會計科目
-AccountAccountingSuggest=建議的會計項目
+DataUsedToSuggestAccount=Data used to suggest account
+AccountAccountingSuggest=Account suggested
 MenuDefaultAccounts=預設會計項目
 MenuBankAccounts=銀行帳戶
 MenuVatAccounts=營業稅帳戶
@@ -111,6 +118,7 @@ MenuLoanAccounts=借款會計項目
 MenuProductsAccounts=產品會計項目
 MenuClosureAccounts=結束帳戶
 MenuAccountancyClosure=結案
+MenuExportAccountancy=Export accountancy
 MenuAccountancyValidationMovements=驗證動作
 ProductsBinding=產品會計項目
 TransferInAccounting=會計轉移
@@ -126,6 +134,7 @@ WriteBookKeeping=在會計中記錄交易
 Bookkeeping=總帳
 BookkeepingSubAccount=子分類帳
 AccountBalance=帳戶餘額
+AccountBalanceSubAccount=Sub-accounts balance
 ObjectsRef=參考的來源物件
 CAHTF=稅前總採購供應商
 TotalExpenseReport=總費用報表
@@ -165,9 +174,9 @@ ACCOUNTANCY_COMBO_FOR_AUX=為子公司帳戶啟用組合列表（如果您有很
 ACCOUNTING_DATE_START_BINDING=定義開始綁定和轉移會計的日期。小於此日期，交易將不會轉入會計。
 ACCOUNTING_DEFAULT_PERIOD_ON_TRANSFER=On accountancy transfer, what is the period selected by default
 
-ACCOUNTING_SELL_JOURNAL=Sales journal (sales and returns)
-ACCOUNTING_PURCHASE_JOURNAL=Purchase journal (purchase and returns)
-ACCOUNTING_BANK_JOURNAL=Cash journal (receipts and disbursements)
+ACCOUNTING_SELL_JOURNAL=Sales journal - sales and returns
+ACCOUNTING_PURCHASE_JOURNAL=Purchase journal - purchase and returns
+ACCOUNTING_BANK_JOURNAL=Cash journal - receipts and disbursements
 ACCOUNTING_EXPENSEREPORT_JOURNAL=費用報表日記帳
 ACCOUNTING_MISCELLANEOUS_JOURNAL=General journal
 ACCOUNTING_HAS_NEW_JOURNAL=有新的日記帳
@@ -189,6 +198,7 @@ ACCOUNTING_ACCOUNT_CUSTOMER_DEPOSIT=Account (from the Chart Of Account) to be us
 UseAuxiliaryAccountOnCustomerDeposit=Store customer account as individual account in subsidiary ledger for lines of down payments (if disabled, individual account for down payment lines will remain empty)
 ACCOUNTING_ACCOUNT_SUPPLIER_DEPOSIT=Account (from the Chart Of Account) to be used as the default
 UseAuxiliaryAccountOnSupplierDeposit=Store supplier account as individual account in subsidiary ledger for lines of down payments (if disabled, individual account for down payment lines will remain empty)
+ACCOUNTING_ACCOUNT_CUSTOMER_RETAINED_WARRANTY=Accounting account by default to register customer retained warranty
 
 ACCOUNTING_PRODUCT_BUY_ACCOUNT=Account (from the Chart Of Account) to be used as the default account for the products purchased within same country (used if not defined in the product sheet)
 ACCOUNTING_PRODUCT_BUY_INTRA_ACCOUNT=Account (from the Chart Of Account) to be used as the default account for the products purchased from EEC to another EEC country (used if not defined in the product sheet)
@@ -218,6 +228,7 @@ JournalLabel=日記帳標籤
 NumPiece=件數
 TransactionNumShort=交易編號
 AccountingCategory=Custom group of accounts
+AccountingCategories=Custom groups of accounts
 GroupByAccountAccounting=依總分類帳帳戶的群組
 GroupBySubAccountAccounting=依子分類帳帳戶的群組
 AccountingAccountGroupsDesc=您可定義某些會計科目大類。他們可以在個人化會計報表中使用。
@@ -234,6 +245,7 @@ ConfirmDeleteMvt=這將刪除會計年度/月和/或特定日記帳的所有操�
 ConfirmDeleteMvtPartial=這將從會計中刪除交易（與同一交易相關的所有操作行將被刪除）
 FinanceJournal=財務日記帳
 ExpenseReportsJournal=費用報表日記帳
+InventoryJournal=Inventory journal
 DescFinanceJournal=財務日記帳包含由銀行帳戶支出的全部付款資料。
 DescJournalOnlyBindedVisible=這是與會計帳戶綁定的記錄顯示，可以記錄到日記帳和分類帳中。
 VATAccountNotDefined=營業稅帳戶未定義
@@ -265,6 +277,7 @@ ShowSubtotalByGroup=依級別顯示小計
 
 Pcgtype=會計項目大類
 PcgtypeDesc=用作某些會計報告的預定義“過濾器”和“分組”標準的科目組。例如“ INCOME”或“ EXPENSE”用作產品的會計科目組，以建立費用/收入報告。
+AccountingCategoriesDesc=Custom group of accounts can be used to group accounting accounts into one name to ease filter use or building of custom reports.
 
 Reconcilable=可和解
 
@@ -289,11 +302,12 @@ DescClosure=請在此處查詢按月排列的尚未驗證及尚未鎖定的異�
 OverviewOfMovementsNotValidated=未驗證和未鎖定的移動概覽
 AllMovementsWereRecordedAsValidated=所有動作都被記錄為已驗證並鎖定
 NotAllMovementsCouldBeRecordedAsValidated=並非所有動作都可以記錄為已驗證與已鎖定
-ValidateMovements=Validate and lock movements...
+ValidateMovements=Validate and lock movements
 DescValidateMovements=禁止修改，刪除任何文字內容。所有條目都必須經過驗證，否則將無法結案
 
 ValidateHistory=自動關聯
 AutomaticBindingDone=自動綁定完成 (%s) - 某些記錄無法自動綁定 (%s)
+DoManualBindingForFailedRecord=You have to do a manual link for the %s row(s) not linked automatically.
 
 ErrorAccountancyCodeIsAlreadyUse=Error, you cannot remove or disable this account of chart of account because it is used
 MvtNotCorrectlyBalanced=Movement not correctly balanced. Debit = %s & Credit = %s
@@ -337,11 +351,19 @@ ACCOUNTING_DISABLE_BINDING_ON_SALES=停用銷售中的會計綁定和轉移（�
 ACCOUNTING_DISABLE_BINDING_ON_PURCHASES=停用採購中的會計綁定和轉移（會計中不考慮供應商發票）
 ACCOUNTING_DISABLE_BINDING_ON_EXPENSEREPORTS=停用費用報表中的會計綁定和轉移（會計中不考慮費用報表）
 ACCOUNTING_ENABLE_LETTERING=Enable the lettering function in the accounting
+ACCOUNTING_ENABLE_LETTERING_DESC=When this options is enabled, you can define, on each accounting entry, a code so you can group different accounting movements together. In the past, when different journals was managed independently, this feature was necessary to group movement lines of different journals together. However, with Dolibarr accountancy, such a tracking code, called "<b>%s</b>" is already saved automatically, so an automatic lettering is already done, with no risk of error so this feature has become useless for a common usage. Manual lettering feature is provided for end users that really don't trust the computer engine making the transfer of data in accountancy.
+EnablingThisFeatureIsNotNecessary=Enabling this feature is no more necessary for a rigourous accounting management.
+ACCOUNTING_ENABLE_AUTOLETTERING=Enable the automatic lettering when transferring to accounting
+ACCOUNTING_ENABLE_AUTOLETTERING_DESC=The code for the lettering is automatically generated and incremented and not choosed by the end user
+OptionsAdvanced=Advanced options
+ACCOUNTING_FORCE_ENABLE_VAT_REVERSE_CHARGE=Activate the management of VAT reverse charge on supplier purchases
+ACCOUNTING_FORCE_ENABLE_VAT_REVERSE_CHARGE_DESC=When this option is enabled, you can define that a supplier or a given vendor invoice must be transfered into accountancy differently: A additionnal debit and a credit line will generated into the accounting on 2 given accounts from the chart of account defined into the "%s" setup page.
 
 ## Export
 NotExportLettering=Do not export the lettering when generating the file
-NotifiedExportDate=Flag exported lines as Exported <span class="warning">(to modify a line, you will need to delete the whole transaction and re-transfert it into accounting)</span>
-NotifiedValidationDate=Validate and Lock the exported entries <span class="warning">(same effect than the "%s" feature, modification and deletion of the lines will DEFINITELY not be possible)</span>
+NotifiedExportDate=Flag not yet exported lines as Exported <span class="warning">(to modify a line flagged as exported, you will need to delete the whole transaction and re-transfert it into accounting)</span>
+NotifiedValidationDate=Validate and Lock the exported entries not yet already locked <span class="warning">(same effect than the "%s" feature, modification and deletion of the lines will DEFINITELY not be possible)</span>
+NotifiedExportFull=Export documents ?
 DateValidationAndLock=驗證與鎖定的日期
 ConfirmExportFile=確定要產生會計匯出檔案 ?
 ExportDraftJournal=匯出日記帳草稿
@@ -372,7 +394,7 @@ ChartofaccountsId=會計項目表ID
 ## Tools - Init accounting account on product / service
 InitAccountancy=初始會計
 InitAccountancyDesc=此頁可在沒有定義產品及服務的銷售及採購會計項目下使用產品及服務的會計項目。
-DefaultBindingDesc=當沒有設定特定會計項目時，此頁面可設定預設會計項目連結到薪資、捐贈、稅捐及營業稅的交易紀錄。
+DefaultBindingDesc=This page can be used to set the default accounts (from the chart of account) to use to link business objects with an account, like payment salaries, donation, taxes and VAT, when no specific account were already set.
 DefaultClosureDesc=該頁面可用於設置會計結帳的參數。
 Options=選項
 OptionModeProductSell=銷售模式
@@ -398,7 +420,7 @@ SaleLocal=本地銷售
 SaleExport=出口銷售
 SaleEEC=在歐盟銷售
 SaleEECWithVAT=在EEC中具有營業稅的銷售不為空，因此我們認為這不是內部銷售，建議的帳戶是標準產品帳戶。
-SaleEECWithoutVATNumber=在EEC中銷售沒有營業稅但合作方的營業稅ID未定義。我們退回標準銷售的產品帳戶。您可以根據需要修改合作方或產品帳戶的營業稅ID。
+SaleEECWithoutVATNumber=Sale in EEC with no VAT but the VAT ID of thirdparty is not defined. We fall back on the account for standard sales. You can fix the VAT ID of the thirdparty, or change the product account suggested for binding if needed.
 ForbiddenTransactionAlreadyExported=禁止：交易已被驗證和/或匯出。
 ForbiddenTransactionAlreadyValidated=禁止：交易已被驗證。
 ## Dictionary
@@ -424,7 +446,7 @@ ConfirmMassUnletteringAuto=Bulk auto unreconcile confirmation
 ConfirmMassUnletteringManual=Bulk manual unreconcile confirmation
 ConfirmMassUnletteringQuestion=Are you sure you want to unreconcile the %s selected record(s)?
 ConfirmMassDeleteBookkeepingWriting=批次刪除確認
-ConfirmMassDeleteBookkeepingWritingQuestion=This will delete the transaction from the accounting (all lines related to the same transaction will be deleted) Are you sure you want to delete the %s selected record(s)?
+ConfirmMassDeleteBookkeepingWritingQuestion=This will delete the transaction from the accounting (all line entries related to the same transaction will be deleted). Are you sure you want to delete the %s selected entries?
 
 ## Error
 SomeMandatoryStepsOfSetupWereNotDone=某些必要的設定步驟沒有完成，請完成它們
@@ -437,11 +459,12 @@ NoJournalDefined=沒有定義的日記帳
 Binded=關聯行數
 ToBind=關聯行
 UseMenuToSetBindindManualy=尚未綁定的行，請使用選單<a href="%s">%s</a>手動進行綁定
-SorryThisModuleIsNotCompatibleWithTheExperimentalFeatureOfSituationInvoices=抱歉此模組不相容於情況發票的實驗功能
+SorryThisModuleIsNotCompatibleWithTheExperimentalFeatureOfSituationInvoices=Note: this module or page is not completely compatible with the experimental feature of situation invoices. Some data may be wrong.
 AccountancyErrorMismatchLetterCode=協調代碼不匹配
 AccountancyErrorMismatchBalanceAmount=餘額（%s）不等於0
 AccountancyErrorLetteringBookkeeping=交易發生錯誤：%s
 ErrorAccountNumberAlreadyExists=The accounting number %s already exists
+ErrorArchiveAddFile=Can't put "%s" file in archive
 
 ## Import
 ImportAccountingEntries=會計條目
@@ -466,7 +489,9 @@ FECFormatMulticurrencyAmount=多國幣別金額（貨幣金額）
 FECFormatMulticurrencyCode=多國幣別代碼（Idevise）
 
 DateExport=日期輸出
-WarningReportNotReliable=警告，此報表非依總帳製作的，所以不含總帳中人工修改的交易。若您日記簿是最新的日期，則記帳檢視會比較準確。
+WarningReportNotReliable=Warning, this report is not based on the Ledger, so does not contain transactions modified manually in the Ledger. If your journalization is up to date, the bookkeeping view is more accurate.
 ExpenseReportJournal=費用報表日記帳
+DocsAlreadyExportedAreIncluded=Docs already exported are included
+ClickToShowAlreadyExportedLines=Click to show already exported lines
 
 NAccounts=%s 個帳戶

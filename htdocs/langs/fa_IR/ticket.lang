@@ -26,6 +26,7 @@ Permission56002=ویرایش برگه‌ه
 Permission56003=حذف برگه‌ها
 Permission56004=مدیریت برگه‌ها
 Permission56005=نمایش همۀ برگه‌های مربوط به اشخاص سوم (برای کاربران خارجی مؤثر نیست و همواره به شخص‌سومی که به‌آن وصل است وابسته است)
+Permission56006=Export tickets
 
 Tickets=برگه‌های پشتیبانی
 TicketDictType=برگه‌ها - انواع
@@ -61,10 +62,11 @@ TypeContact_ticket_external_CONTRIBUTOR=مشارکت‌کنندۀ بیرونی
 OriginEmail=Reporter Email
 Notify_TICKET_SENTBYMAIL=ارسال پیام برگه با رایانامه
 
+ExportDataset_ticket_1=برگه‌های پشتیبانی
+
 # Status
 Read=خوانده‌شده
 Assigned=نسبت‌داده شده
-InProgress=در حال انجام
 NeedMoreInformation=Waiting for reporter feedback
 NeedMoreInformationShort=Waiting for feedback
 Answered=پاسخ داده شده
@@ -100,6 +102,8 @@ TicketNewEmailBodyHelp=نوشته‌ای که اینجا وارد می‌شود�
 TicketParamPublicInterface=برپاسازی رابط عمومی
 TicketsEmailMustExist=نیاز به یک نشانی رایانامه برای ساخت برگۀ پشتیبانی
 TicketsEmailMustExistHelp=در رابط عمومی، نشانی رایانامه باید در بانک داده پر شود تا امکان ساخت برگۀ پشتیبانی وجود داشته باشد
+TicketsShowProgression=Display the ticket progress in the public interface
+TicketsShowProgressionHelp=Enable this option to hide the progress of the ticket in the public interface pages
 TicketCreateThirdPartyWithContactIfNotExist=Ask name and company name for unknown emails.
 TicketCreateThirdPartyWithContactIfNotExistHelp=Check if a thirdparty or a contact exists for the email entered. If not, ask a name and a company name to create a third party with contact.
 PublicInterface=رابط عمومی
@@ -122,7 +126,9 @@ TicketParams=مؤلفه‌ها
 TicketsShowModuleLogo=نمایش نماد واحد، در رابط عمومی
 TicketsShowModuleLogoHelp=این گزینه را برای پنهان کردن نماد واحد در صفحات رابط عمومی استفاده کنید
 TicketsShowCompanyLogo=نمایش نماد شرکت در رابط عمومی
-TicketsShowCompanyLogoHelp=این گزینه را برای پنعان کردن نماد شرکت اصلی در صفحات رابط عمومی استفاده کنید
+TicketsShowCompanyLogoHelp=Enable this option to show the logo of the main company in the pages of the public interface
+TicketsShowCompanyFooter=Display the footer of the company in the public interface
+TicketsShowCompanyFooterHelp=Enable this option to show the footer of the main company in the pages of the public interface
 TicketsEmailAlsoSendToMainAddress=Also send a notification to the main email address
 TicketsEmailAlsoSendToMainAddressHelp=Enable this option to also send an email to the address defined into setup "%s" (see tab "%s")
 TicketsLimitViewAssignedOnly=محدود کردن نمایش برگۀ‌پشتیبانی به کاربر فعلی (برای کاربران خارجی مؤثر نیست، همواره محدود به شخص‌سومی که بدان مربوطند دارد)
@@ -183,7 +189,7 @@ CreatedBy=ساخته‌شده توسط
 NewTicket=برگۀ جدید
 SubjectAnswerToTicket=پاسخ برگه
 TicketTypeRequest=نوع درخواست
-TicketCategory=Ticket categorization
+TicketCategory=Ticket group
 SeeTicket=نمایش برگه
 TicketMarkedAsRead=برگه به صورت خوانده شده علامت‌گذاری شد
 TicketReadOn=خواندن
@@ -195,7 +201,8 @@ TicketAssigned=اکنون برگه نسبت داده‌شد
 TicketChangeType=تغییر نوع
 TicketChangeCategory=تغییر کد تحلیلی-آنالیتیک
 TicketChangeSeverity=تغییر درجۀ اهمیت
-TicketAddMessage=Add private message
+TicketAddMessage=Add or send a message
+TicketAddPrivateMessage=Add a private message
 MessageSuccessfullyAdded=برگه اضافه شد
 TicketMessageSuccessfullyAdded=پیام با موفقیت افزوده شد
 TicketMessagesList=فهرست پیام‌ها
@@ -241,9 +248,14 @@ ConfirmReOpenTicket=تائید بازگشائی این برگه؟
 TicketMessageMailIntroAutoNewPublicMessage=یک پیام جدید بر روی برگه با عنوان %s ارسال شده است:
 TicketAssignedToYou=برگه نسبت داده شد
 TicketAssignedEmailBody=شما به برگۀ #%s نسبت داده شده‌اید، توسط %s
+TicketAssignedCustomerEmail=Your ticket has been assigned for processing.
+TicketAssignedCustomerBody=This is an automatic email to confirm your ticket has been assigned for processing.
 MarkMessageAsPrivate=علامت‌زدن پیام به عنوان خصوصی
-TicketMessageSendEmailHelp=An email will be sent to all assigned contact (internal contacts, but also external contacts except if the option "%s" is checked)
-TicketMessagePrivateHelp=این پیام به کاربران خارجی نمایش داده نخواهد شد
+TicketMessageSendEmailHelp=An email will be sent to all assigned contact
+TicketMessageSendEmailHelp2a=(internal contacts, but also external contacts except if the option "%s" is checked)
+TicketMessageSendEmailHelp2b=(internal contacts, but also external contacts)
+TicketMessagePrivateHelp=This message will not be visible to external users
+TicketMessageRecipientsHelp=Recipient field completed with active contacts linked to the ticket
 TicketEmailOriginIssuer=صادر کننده در اصل برگه‌ها
 InitialMessage=پیام ابتدائی
 LinkToAContract=پیوند به یک قرارداد
@@ -266,6 +278,7 @@ TicketsDelayForFirstResponseTooLong=Too much time elapsed since ticket opening w
 TicketsDelayFromLastResponseTooLong=Too much time elapsed since last answer on this ticket.
 TicketNoContractFoundToLink=No contract was found to be automatically linked to this ticket. Please link a contract manually.
 TicketManyContractsLinked=Many contracts have been automatically linked to this ticket. Make sure to verify which should be chosen.
+TicketRefAlreadyUsed=The reference [%s] is already used, your new reference is [%s]
 
 #
 # Logs
@@ -316,6 +329,9 @@ OldUser=کاربر قدیمی
 NewUser=کاربر جدید
 NumberOfTicketsByMonth=تعداد برگه‌های پشتیبانی در ماه
 NbOfTickets=تعداد برگه‌های پشتیبانی
+ExternalContributors=External contributors
+AddContributor=Add external contributor
+
 # notifications
 TicketCloseEmailSubjectCustomer=Ticket closed
 TicketCloseEmailBodyCustomer=This is an automatic message to notify you that ticket %s has just been closed.

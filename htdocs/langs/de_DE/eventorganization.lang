@@ -53,6 +53,7 @@ EVENTORGANIZATION_FILTERATTENDEES_TYPE = Schränkt im Formular zum Erstellen/Hin
 #
 # Object
 #
+OrganizedEvent=Organisierte Veranstaltung
 EventOrganizationConfOrBooth= Konferenzbeitrag oder Stand
 EventOrganizationConfOrBoothes=Konferenzbeiträge oder Stände
 ManageOrganizeEvent = Veranstaltung organisieren
@@ -172,3 +173,11 @@ ErrorSeveralCompaniesWithEmailContactUs=Es wurden mehrere Unternehmen mit dieser
 ErrorSeveralCompaniesWithNameContactUs=Es wurden mehrere Unternehmen mit diesem Namen gefunden, so dass wir Ihre Registrierung nicht automatisch freigeben können. Bitte kontaktieren Sie uns unter %s für eine manuelle Freigabe
 NoPublicActionsAllowedForThisEvent=Für diese Veranstaltung sind keine Aktionen für die Öffentlichkeit zugänglich
 MaxNbOfAttendees=Maximale Teilnehmerzahl
+DateStartEvent=Startdatum der Veranstaltung
+DateEndEvent=Enddatum der Veranstaltung
+ModifyStatus=Status ändern
+ConfirmModifyStatus=Statusänderung bestätigen
+ConfirmModifyStatusQuestion=Sind Sie sicher, dass Sie die %s ausgewählten Datensätze ändern möchten?
+RecordsUpdated = %s Datensätze aktualisiert
+RecordUpdated = Datensatz aktualisiert
+NoRecordUpdated = Kein Datensatz aktualisiert

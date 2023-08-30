@@ -26,6 +26,7 @@ Permission56002=Редагувати заявки
 Permission56003=Видалити заявки
 Permission56004=Управління заявками
 Permission56005=Перегляньте заявки всіх контрагентів (не діє для зовнішніх користувачів, завжди обмежуйтеся третьою стороною, від якої вони залежать)
+Permission56006=Export tickets
 
 Tickets=Заявки
 TicketDictType=Заявка - Типи
@@ -61,10 +62,11 @@ TypeContact_ticket_external_CONTRIBUTOR=Зовнішній учасник
 OriginEmail=Електронна пошта репортера
 Notify_TICKET_SENTBYMAIL=Надішліть повідомлення про квиток електронною поштою
 
+ExportDataset_ticket_1=Заявки
+
 # Status
 Read=Прочитані
 Assigned=Призначений
-InProgress=В процесі
 NeedMoreInformation=Чекаємо відгуку журналіста
 NeedMoreInformationShort=Чекаємо зворотного зв'язку
 Answered=Відповів
@@ -100,6 +102,8 @@ TicketNewEmailBodyHelp=Вказаний тут текст буде вставл�
 TicketParamPublicInterface=Налаштування загальнодоступного інтерфейсу
 TicketsEmailMustExist=Для створення квитка потрібна наявна адреса електронної пошти
 TicketsEmailMustExistHelp=У загальнодоступному інтерфейсі електронна адреса вже має бути заповнена в базі даних, щоб створити новий квиток.
+TicketsShowProgression=Display the ticket progress in the public interface
+TicketsShowProgressionHelp=Enable this option to hide the progress of the ticket in the public interface pages
 TicketCreateThirdPartyWithContactIfNotExist=Ask name and company name for unknown emails.
 TicketCreateThirdPartyWithContactIfNotExistHelp=Check if a thirdparty or a contact exists for the email entered. If not, ask a name and a company name to create a third party with contact.
 PublicInterface=Загальнодоступний інтерфейс
@@ -122,7 +126,9 @@ TicketParams=Параметри
 TicketsShowModuleLogo=Відобразити логотип модуля в загальнодоступному інтерфейсі
 TicketsShowModuleLogoHelp=Увімкніть цю опцію, щоб приховати модуль логотипу на сторінках загальнодоступного інтерфейсу
 TicketsShowCompanyLogo=Відображати логотип компанії в загальнодоступному інтерфейсі
-TicketsShowCompanyLogoHelp=Увімкніть цю опцію, щоб приховати логотип основної компанії на сторінках загальнодоступного інтерфейсу
+TicketsShowCompanyLogoHelp=Enable this option to show the logo of the main company in the pages of the public interface
+TicketsShowCompanyFooter=Display the footer of the company in the public interface
+TicketsShowCompanyFooterHelp=Enable this option to show the footer of the main company in the pages of the public interface
 TicketsEmailAlsoSendToMainAddress=Також надішліть сповіщення на основну електронну адресу
 TicketsEmailAlsoSendToMainAddressHelp=Увімкніть цю опцію, щоб також надіслати електронний лист на адресу, визначену в налаштуваннях «%s» (див. вкладку «%s»)
 TicketsLimitViewAssignedOnly=Обмежити відображення квитками, призначеними поточному користувачу (не діє для зовнішніх користувачів, завжди обмежується третьою стороною, від якої вони залежать)
@@ -183,7 +189,7 @@ CreatedBy=Створено
 NewTicket=Новий квиток
 SubjectAnswerToTicket=Відповідь на квиток
 TicketTypeRequest=Тип запиту
-TicketCategory=Категоризація квитків
+TicketCategory=Ticket group
 SeeTicket=Дивіться квиток
 TicketMarkedAsRead=Квиток позначено як прочитаний
 TicketReadOn=Читайте далі
@@ -195,7 +201,8 @@ TicketAssigned=Квиток призначено
 TicketChangeType=Змінити тип
 TicketChangeCategory=Змінити аналітичний код
 TicketChangeSeverity=Зміна тяжкості
-TicketAddMessage=Add private message
+TicketAddMessage=Add or send a message
+TicketAddPrivateMessage=Add a private message
 MessageSuccessfullyAdded=Квиток додано
 TicketMessageSuccessfullyAdded=Повідомлення успішно додано
 TicketMessagesList=Список повідомлень
@@ -241,9 +248,14 @@ ConfirmReOpenTicket=Підтвердити повторно відкрити ц�
 TicketMessageMailIntroAutoNewPublicMessage=На квитку було розміщено нове повідомлення з темою %s:
 TicketAssignedToYou=Квиток призначено
 TicketAssignedEmailBody=Вам призначено квиток #%s від %s
+TicketAssignedCustomerEmail=Your ticket has been assigned for processing.
+TicketAssignedCustomerBody=This is an automatic email to confirm your ticket has been assigned for processing.
 MarkMessageAsPrivate=Позначити повідомлення як приватне
-TicketMessageSendEmailHelp=An email will be sent to all assigned contact (internal contacts, but also external contacts except if the option "%s" is checked)
-TicketMessagePrivateHelp=Це повідомлення не відображатиметься зовнішнім користувачам
+TicketMessageSendEmailHelp=An email will be sent to all assigned contact
+TicketMessageSendEmailHelp2a=(internal contacts, but also external contacts except if the option "%s" is checked)
+TicketMessageSendEmailHelp2b=(internal contacts, but also external contacts)
+TicketMessagePrivateHelp=This message will not be visible to external users
+TicketMessageRecipientsHelp=Recipient field completed with active contacts linked to the ticket
 TicketEmailOriginIssuer=Емітент при відправленні квитків
 InitialMessage=Початкове повідомлення
 LinkToAContract=Посилання на договір
@@ -266,6 +278,7 @@ TicketsDelayForFirstResponseTooLong=Забагато часу минуло з м
 TicketsDelayFromLastResponseTooLong=Забагато часу минуло з моменту останньої відповіді на цей квиток.
 TicketNoContractFoundToLink=Не знайдено жодного контракту, який би автоматично пов’язано з цим квитком. Будь ласка, зв’яжіть договір вручну.
 TicketManyContractsLinked=Багато контрактів були автоматично пов’язані з цим квитком. Обов’язково перевірте, що слід вибрати.
+TicketRefAlreadyUsed=The reference [%s] is already used, your new reference is [%s]
 
 #
 # Logs
@@ -316,6 +329,9 @@ OldUser=Старий користувач
 NewUser=Новий користувач
 NumberOfTicketsByMonth=Кількість заявок за місяць
 NbOfTickets=Кількість заявок
+ExternalContributors=External contributors
+AddContributor=Add external contributor
+
 # notifications
 TicketCloseEmailSubjectCustomer=Квиток закритий
 TicketCloseEmailBodyCustomer=Це автоматичне повідомлення про те, що квиток %s щойно закрито.

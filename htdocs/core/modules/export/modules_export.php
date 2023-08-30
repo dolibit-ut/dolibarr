@@ -72,6 +72,7 @@ class ModeleExports extends CommonDocGenerator    // This class can't be abstrac
 					require_once $file;
 					if (class_exists($classname)) {
 						$module = new $classname($db);
+						// var_dump($classname);
 
 						// Picto
 						$this->picto[$module->id] = $module->picto;
@@ -107,7 +108,7 @@ class ModeleExports extends CommonDocGenerator    // This class can't be abstrac
 	}
 
 	/**
-	 *  Renvoi libelle d'un driver export
+	 *  Return label of driver export
 	 *
 	 *  @param	string	$key	Key of driver
 	 *  @return	string			Label
@@ -140,7 +141,7 @@ class ModeleExports extends CommonDocGenerator    // This class can't be abstrac
 	}
 
 	/**
-	 *  Renvoi libelle de librairie externe du driver
+	 *  Renvoi label of driver lib
 	 *
 	 *  @param	string	$key	Key of driver
 	 *  @return	string			Label of library
@@ -151,7 +152,7 @@ class ModeleExports extends CommonDocGenerator    // This class can't be abstrac
 	}
 
 	/**
-	 *  Renvoi version de librairie externe du driver
+	 *  Return version of driver lib
 	 *
 	 *  @param	string	$key	Key of driver
 	 *  @return	string			Version of library
